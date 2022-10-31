@@ -1,3 +1,0 @@
-Land rental  
-Transportation  
-Certification
