@@ -24,8 +24,6 @@ FSB.clean <- FSB %>%
          biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)
 
 
-#write.csv(FSB.clean, "2-Data/Clean/fsb_clean.csv", row.names = FALSE)  
-
 # https://stackoverflow.com/questions/5831794/opposite-of-in-exclude-rows-with-values-specified-in-a-vector 
 
 
@@ -44,3 +42,4 @@ fsb.wide <- fsb.weeds  %>%
   mutate(crop.biomass.g.per.sq.m = replace_na(crop.biomass.g.per.sq.m, 0),
          species.y = replace_na(species.y, "none"))
 
+write.csv(fsb.wide, "2-Data/Clean/fsb_clean.csv", row.names = FALSE)  
