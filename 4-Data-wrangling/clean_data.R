@@ -14,10 +14,33 @@ FSB.clean <- FSB %>%
   rename(dried.wt.bagged = "Dry Weight w Bag (grams)",
          bag.type = "Bag Type") %>%
   mutate(bag.wt = ifelse(bag.type == "20", 21,
-                           ifelse(bag.type == "NL", 27, 29.25))) %>%
-  mutate(Block = substr(Barcode, 5,5),
-         Treatment = substr(Barcode, 7,7),
-         Species = str_sub(Barcode, start=9)) %>%
-  mutate(dried.wt = dried.wt.bagged - bag.wt)
+                           ifelse(bag.type == "NL", 27, 29.25)),
+         block = substr(Barcode, 5,5),
+         treatment = substr(Barcode, 7,7),
+         species = str_sub(Barcode, start=9),
+         group = ifelse(species %in% c("Alfalfa", "Red Clover", "Control"), "C", "B"), # C for control, B for brassicas | # controls are alfalfa, red clover, and no cover crop
+         dried.wt = dried.wt.bagged - bag.wt,
+         sampled.area.m.sq = 0.25,
+         biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)
 
-write.csv(FSB.clean, "2-Data/Clean/fsb_clean.csv", row.names = FALSE)  
+
+#write.csv(FSB.clean, "2-Data/Clean/fsb_clean.csv", row.names = FALSE)  
+
+# https://stackoverflow.com/questions/5831794/opposite-of-in-exclude-rows-with-values-specified-in-a-vector 
+
+
+fsb.crops <- FSB.clean %>% 
+  filter(!species %in% c("Weeds", "Control")) %>%
+  rename(crop.biomass.g.per.sq.m = "biomass.g.per.m.sq")
+  
+fsb.weeds <- FSB.clean %>% 
+  filter(species %in% c("Weeds", "Control")) %>%
+  rename(weed.biomass.g.per.sq.m = "biomass.g.per.m.sq")
+
+
+fsb.wide <- fsb.weeds  %>% 
+  left_join(fsb.crops, by = c("block", "treatment")) %>%
+  select(block, treatment, species.x, species.y, crop.biomass.g.per.sq.m, weed.biomass.g.per.sq.m) %>%
+  mutate(crop.biomass.g.per.sq.m = replace_na(crop.biomass.g.per.sq.m, 0),
+         species.y = replace_na(species.y, "none"))
+
