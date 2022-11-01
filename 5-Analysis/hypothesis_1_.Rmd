@@ -1,32 +1,83 @@
 ---
 output: 
-  bookdown::pdf_document2: 
+  bookdown::html_document2: 
+#  bookdown::pdf_document2:
     keep_tex: yes
+    keep_md: yes
     toc: false
     number_sections: false
-    extra_dependencies: ["float"]
-bibliography: .bib
+#bibliography: NECCC-test.bib
 ---
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.dim = c(10, 6), fig.fullwidth=TRUE)
+library(readr) # for read_csv
+library(emmeans) # for join_test
+library(ggResidpanel)
+library(tidyverse)
+library(kableExtra)
+library(ggplot2); theme_set(theme_bw())
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+fsb <- read_csv("../2-Data/Clean/fsb_clean.csv")
 ```
 
-## Including Plots
+### Crop biomass in response to treatment and weed biomass 
 
-You can also embed plots, for example:
+```{r response-crops}
+# Worsen the residual plot look
+# crops.lm <- lm( log(crop.biomass.g.per.sq.m + min(crop.biomass.g.per.sq.m[crop.biomass.g.per.sq.m > 0]))  ~ as.factor(block) + 
+#                   treatment +
+#                   log(weed.biomass.g.per.sq.m +  min(weed.biomass.g.per.sq.m[weed.biomass.g.per.sq.m  > 0])),
+#                 data = fsb)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+# No improvement compared to no data transformation 
+# crops.lm <- lm(sqrt(crop.biomass.g.per.sq.m ) ~ as.factor(block) + treatment + weed.biomass.g.per.sq.m, data = fsb)
+
+crops.lm <- lm(crop.biomass.g.per.sq.m  ~ as.factor(block) + treatment + weed.biomass.g.per.sq.m, data = fsb)
+resid_panel(crops.lm)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Weed biomass in response to treatment and crop biomass 
+```{r response-weeds}
+
+## Transforming crop.biomass.g.per.sq.m may be unnecessary because the Control treatment was mean to be zero for crop biomass 
+
+weeds.lm <- lm(log(weed.biomass.g.per.sq.m +  min(weed.biomass.g.per.sq.m[weed.biomass.g.per.sq.m > 0])) ~ as.factor(block) + treatment + crop.biomass.g.per.sq.m, data = fsb)
+
+resid_panel(weeds.lm)
+
+
+weeds.lm2 <- lm(weed.biomass.g.per.sq.m  ~ as.factor(block) + treatment + crop.biomass.g.per.sq.m, data = fsb)
+joint_tests(weeds.lm2)
+resid_panel(weeds.lm2)
+```
+
+Weed suppression from different *Brassicacaea* species was comparable (Table \@ref(tab:anova)A), even though crop biomass differed by species (Table \@ref(tab:anova)B). Crop biomass was the strongest factor affecting weed biomass.  
+
+```{r anova}
+#Make a side by side table 
+crops.anova <- joint_tests(crops.lm) %>% print(export = TRUE)
+weeds.anova <- joint_tests(weeds.lm) %>% print(export = TRUE)
+
+cbind( weeds.anova$summary, crops.anova$summary) %>%
+  kable(caption = "ANOVA tables of crop and weed responses") %>%
+  add_header_above(c(" " = 1,  "Weed" = 5, "Crop" = 5))
+```
+### Contrasts 
+
+
+
+
+```{r weed-contrast}
+plot(emmeans(weeds.lm, "treatment"), comparisons = TRUE) + 
+  xlab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  ylab("Treatment")
+```
+
+```{r crop-contrast}
+plot(emmeans(crops.lm, "treatment"), comparisons = TRUE) + 
+  xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
+  ylab("Treatment")
+```
