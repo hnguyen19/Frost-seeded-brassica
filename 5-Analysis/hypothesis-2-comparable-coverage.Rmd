@@ -1,0 +1,20 @@
+---
+output: 
+  bookdown::html_document2: 
+#  bookdown::pdf_document2:
+    keep_tex: yes
+    keep_md: yes
+    toc: false
+    number_sections: false
+#bibliography: NECCC-test.bib
+---
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.dim = c(10, 6), fig.fullwidth=TRUE)
+library(readr) # for read_csv
+library(emmeans) # for join_test
+library(ggResidpanel)
+library(tidyverse)
+library(kableExtra)
+library(ggplot2); theme_set(theme_bw())
+```
