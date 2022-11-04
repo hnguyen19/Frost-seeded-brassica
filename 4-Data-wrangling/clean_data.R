@@ -22,7 +22,7 @@ FSB.clean <- FSB %>%
          dried.wt = dried.wt.bagged - bag.wt,
          sampled.area.m.sq = 0.25,
          biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)  %>% 
-  filter(treatment != "M") %>% # alfalfa (treatment M) was not supposed to be frost-seeded
+  filter(!treatment %in% c("J", "M")) %>% #Winter camelina did not survive and alfalfa (treatment M) was not supposed to be frost-seeded a
   mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
   select(block, treatment, species, dried.wt.bagged, sampled.area.m.sq, biomass.g.per.m.sq) %>%
   group_by(block, treatment, species) %>%
@@ -50,7 +50,7 @@ fsb.wide <- fsb.weeds  %>%
   left_join(fsb.crops, by = c("block", "treatment")) %>%
   select(block, treatment, species.x, species.y, crop.biomass.g.per.sq.m, weed.biomass.g.per.sq.m) %>%
   mutate(crop.biomass.g.per.sq.m = replace_na(crop.biomass.g.per.sq.m, 0),
-         species.y = replace_na(species.y, "none")) %>%
+         species.y = replace_na(species.y, "None")) %>%
   dplyr::arrange(species.y)
 
 write.csv(fsb.wide, "2-Data/Clean/fsb_wide.csv", row.names = FALSE)  

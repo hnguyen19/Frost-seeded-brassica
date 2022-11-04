@@ -23,18 +23,18 @@
 "2","F","Weeds","Mustard",108.44,37.92
 "3","F","Weeds","Mustard",67.32,60.52
 "4","F","Weeds","Mustard",104.36,98.76
-"1","N","Control","none",0,118.44
-"1","N","Control","none",0,118.44
-"1","N","Control","none",0,118.44
-"3","N","Control","none",0,145.92
-"2","N","Control","none",0,164.14
-"2","N","Control","none",0,164.14
-"3","N","Control","none",0,145.92
-"3","N","Control","none",0,145.92
-"3","N","Control","none",0,145.92
-"4","N","Control","none",0,169.48
-"4","N","Control","none",0,169.48
-"4","N","Control","none",0,169.48
+"1","N","Control","None",0,118.44
+"1","N","Control","None",0,118.44
+"1","N","Control","None",0,118.44
+"3","N","Control","None",0,145.92
+"2","N","Control","None",0,164.14
+"2","N","Control","None",0,164.14
+"3","N","Control","None",0,145.92
+"3","N","Control","None",0,145.92
+"3","N","Control","None",0,145.92
+"4","N","Control","None",0,169.48
+"4","N","Control","None",0,169.48
+"4","N","Control","None",0,169.48
 "1","H","Weeds","Oriental mustard",159.64,49.2
 "2","H","Weeds","Oriental mustard",69.96,73.36
 "3","H","Weeds","Oriental mustard",150.96,12.28
@@ -55,7 +55,3 @@
 "2","B","Weeds","Turnip",58.16,69.16
 "3","B","Weeds","Turnip",13.2,105.84
 "4","B","Weeds","Turnip",39.8,313.48
-"1","J","Weeds","Winter camelina",0,146.88
-"2","J","Weeds","Winter camelina",0,45.52
-"3","J","Weeds","Winter camelina",0,9.23999999999999
-"4","J","Weeds","Winter camelina",0,223.6
