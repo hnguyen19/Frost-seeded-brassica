@@ -22,15 +22,15 @@ FSB.clean <- FSB %>%
          dried.wt = dried.wt.bagged - bag.wt,
          sampled.area.m.sq = 0.25,
          biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)  %>% 
-  filter(species != "Alfalfa") %>% # alfalfa was not supposed to be frost-seeded
-  mutate(treatment = ifelse(treatment %in% LETTERS[1:13], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
+  filter(treatment != "Alfalfa") %>% # alfalfa (treatment M) was not supposed to be frost-seeded
+  mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
   select(block, treatment, species, dried.wt.bagged, sampled.area.m.sq, biomass.g.per.m.sq) %>%
   group_by(block, treatment, species) %>%
   mutate(dried.wt.bagged = mean(dried.wt.bagged), 
          sampled.area.m.sq = mean(sampled.area.m.sq), 
          biomass.g.per.m.sq = mean(biomass.g.per.m.sq)) ## Treat all the controls as subsamples and average over them 
     
-#write.csv(FSB.clean , "2-Data/Clean/fsb_long.csv", row.names = FALSE)  
+write.csv(FSB.clean , "2-Data/Clean/fsb_long.csv", row.names = FALSE)  
 
 # https://stackoverflow.com/questions/5831794/opposite-of-in-exclude-rows-with-values-specified-in-a-vector 
 
@@ -49,4 +49,4 @@ fsb.wide <- fsb.weeds  %>%
   mutate(crop.biomass.g.per.sq.m = replace_na(crop.biomass.g.per.sq.m, 0),
          species.y = replace_na(species.y, "none"))
 
-#write.csv(fsb.wide, "2-Data/Clean/fsb_wide.csv", row.names = FALSE)  
+write.csv(fsb.wide, "2-Data/Clean/fsb_wide.csv", row.names = FALSE)  

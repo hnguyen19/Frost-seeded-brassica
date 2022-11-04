@@ -14,7 +14,6 @@
 "1","I","Weeds","Arugula",27.68,321.68
 "1","N","Control","none",0,118.44
 "1","N","Control","none",0,118.44
-"1","M","Weeds","none",0,401.32
 "2","G","Weeds","Brown Mustard",113.88,0
 "2","L","Weeds","Red Clover",0.319999999999993,34
 "3","N","Control","none",0,145.92
@@ -26,7 +25,6 @@
 "2","E","Weeds","Broadleaf Mustard",69.84,242.96
 "2","D","Weeds","Collard",123.72,0
 "2","J","Weeds","Winter Camelina",0,45.52
-"2","M","Weeds","none",0,113.44
 "2","I","Weeds","Arugula",22.76,38.2
 "2","N","Control","none",0,164.14
 "2","A","Weeds","Radish",43.56,84.04
@@ -39,7 +37,6 @@
 "3","N","Control","none",0,145.92
 "3","I","Weeds","Arugula",41.24,71.56
 "3","N","Control","none",0,145.92
-"3","M","Weeds","none",0,18.76
 "3","A","Weeds","Radish",36.28,118
 "3","C","Weeds","Rapeseed",0,35.92
 "3","G","Weeds","Brown Mustard",89.92,45.52
@@ -58,7 +55,6 @@
 "4","I","Weeds","Arugula",27.68,253.84
 "4","E","Weeds","Broadleaf Mustard",80.88,67.24
 "4","L","Weeds","Red Clover",6.36,89.16
-"4","M","Weeds","none",0,183.68
 "4","H","Weeds","Oriental Mustard",161.8,40.48
 "4","N","Control","none",0,169.48
 "4","C","Weeds","Rapeseed",42,69.52
