@@ -69,8 +69,7 @@ fsb %>%
 Using `ggResidpanel` version 0.3.0 (Goode and Rey, 2019) for model diagnosis, no predictable pattern in the plots of residuals vs. predicted values suggests that the analysis models fit the data well (Figures \@ref(fig:diag-crops) and \@ref(fig:diag-weeds)).   
 
 
-### Crop biomass in response to treatment and weed biomass 
-
+### Crop biomass in response to treatment and weed biomass - ANCOVA
 
 ```{r response-crops, include = FALSE}
 # Worsen the residual plot look
@@ -89,7 +88,7 @@ crops.lm <- lm(crop.biomass.g.per.sq.m  ~ as.factor(block) + treatment + weed.bi
 resid_panel(crops.lm)
 ```
 
-### Weed biomass in response to treatment and crop biomass 
+### Weed biomass in response to treatment and crop biomass - ANCOVA
 ```{r diag-weeds, fig.cap = "Diagnosis plot for the linear model of weed biomass responding to treatment and crop biomass"}
 
 ## Transforming crop.biomass.g.per.sq.m may be unnecessary because the Control treatment was mean to be zero for crop biomass 
@@ -103,34 +102,34 @@ resid_panel(weeds.lm)
 
 ### Results  
 
-Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table \@ref(tab:anova-weeds)), even though crop biomass differed by species (Table \@ref(tab:anova-crops)). Crop biomass was the strongest factor affecting weed biomass  (Table \@ref(tab:anova-crops)).
+Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table \@ref(tab:anova-weeds)), even though crop biomass differed by species (Table \@ref(tab:anova-crops)). Crop biomass was the strongest factor affecting weed biomass (Table \@ref(tab:anova-crops)).
 
-```{r anova, include=FALSE}
+```{r ancova, include=FALSE}
 #Make a side by side table 
-crops.anova <- joint_tests(crops.lm) %>% print(export = TRUE)
-weeds.anova <- joint_tests(weeds.lm) %>% print(export = TRUE)
+crops.ancova <- joint_tests(crops.lm) %>% print(export = TRUE)
+weeds.ancova <- joint_tests(weeds.lm) %>% print(export = TRUE)
 ```
 
 ```{r, eval=FALSE, include=FALSE}
-cbind( weeds.anova$summary, crops.anova$summary) %>%
-  kable(caption = "ANOVA tables of crop and weed responses") %>%
+cbind( weeds.ancova$summary, crops.ancova$summary) %>%
+  kable(caption = "ANCOVA tables of crop and weed responses") %>%
   add_header_above(c(" " = 1,  "Weed" = 5, "Crop" = 5))
 ```
 
-```{r anova-weeds, echo=FALSE}
-weeds.anova.df <- as.data.frame(weeds.anova$summary)
+```{r ancova-weeds, echo=FALSE}
+weeds.ancova.df <- as.data.frame(weeds.ancova$summary)
 
-weeds.anova.df %>%
+weeds.ancova.df %>%
   flextable() %>%
-  set_caption("ANOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.")
+  set_caption("ANCOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.")
 ```
 
-```{r anova-crops, echo=FALSE}
-crops.anova.df <- as.data.frame(crops.anova$summary)
+```{r ancova-crops, echo=FALSE}
+crops.ancova.df <- as.data.frame(crops.ancova$summary)
 
-crops.anova.df %>%
+crops.ancova.df %>%
   flextable() %>%
-  set_caption("ANOVA for crop biomass response. Crop biomass analyzed on the original scale.")
+  set_caption("ANCOVA for crop biomass response. Crop biomass analyzed on the original scale.")
 ```
 
 
