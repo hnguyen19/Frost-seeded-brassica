@@ -102,12 +102,16 @@ group_by(species.y) %>%
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  ggplot(aes(x = mean_x, y = mean_y )) +
-  geom_line(aes(y=predict(nls.brassica), size = 2)) + 
-  geom_point(aes( color = species.y, size = 3), data = fsb.wide.summ ) +
+  geom_line(aes(y=predict(nls.brassica)), size = 2) + 
+  geom_point(aes( color = species.y), size = 3, data = fsb.wide.summ ) +
+ scale_colour_brewer(palette="Paired") +
+  ylim(28, 190) +
+  xlim(0, 170) +
   ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
   xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
-  geom_vline(xintercept = 135.59/2, color = "grey", linetype="dashed") + # plot vertical line
-  geom_hline(yintercept = 171.32/2, color = "grey", linetype="dashed")  # plot horizontal line
+  geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
+  geom_hline(yintercept = 110, color = "grey", linetype="dashed") + 
+  labs(color= 'Cover crop')
 ```
 
 
