@@ -111,6 +111,7 @@ weeds.ancova <- joint_tests(weeds.lm) %>% print(export = TRUE)
 ```
 
 ```{r, eval=FALSE, include=FALSE}
+
 cbind( weeds.ancova$summary, crops.ancova$summary) %>%
   kable(caption = "ANCOVA tables of crop and weed responses") %>%
   add_header_above(c(" " = 1,  "Weed" = 5, "Crop" = 5))
