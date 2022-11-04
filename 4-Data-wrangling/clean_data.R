@@ -17,18 +17,19 @@ FSB.clean <- FSB %>%
                            ifelse(bag.type == "NL", 27, 29.25)),
          block = substr(Barcode, 5,5),
          treatment = substr(Barcode, 7,7),
-         species = str_sub(Barcode, start=9),
+         species = str_to_sentence(str_sub(Barcode, start=9), locale = "en"), # species names to sentence case 
 #         group = ifelse(species %in% c("Alfalfa", "Red Clover", "Control"), "C", "B"), # C for control, B for brassicas | # controls are alfalfa, red clover, and no cover crop
          dried.wt = dried.wt.bagged - bag.wt,
          sampled.area.m.sq = 0.25,
          biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)  %>% 
-  filter(treatment != "Alfalfa") %>% # alfalfa (treatment M) was not supposed to be frost-seeded
+  filter(treatment != "M") %>% # alfalfa (treatment M) was not supposed to be frost-seeded
   mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
   select(block, treatment, species, dried.wt.bagged, sampled.area.m.sq, biomass.g.per.m.sq) %>%
   group_by(block, treatment, species) %>%
   mutate(dried.wt.bagged = mean(dried.wt.bagged), 
          sampled.area.m.sq = mean(sampled.area.m.sq), 
-         biomass.g.per.m.sq = mean(biomass.g.per.m.sq)) ## Treat all the controls as subsamples and average over them 
+         biomass.g.per.m.sq = mean(biomass.g.per.m.sq))  ## Treat all the controls as subsamples and average over them 
+
     
 write.csv(FSB.clean , "2-Data/Clean/fsb_long.csv", row.names = FALSE)  
 
@@ -37,16 +38,19 @@ write.csv(FSB.clean , "2-Data/Clean/fsb_long.csv", row.names = FALSE)
 
 fsb.crops <- FSB.clean %>% 
   filter(!species %in% c("Weeds", "Control")) %>%
-  rename(crop.biomass.g.per.sq.m = "biomass.g.per.m.sq")
+  rename(crop.biomass.g.per.sq.m = "biomass.g.per.m.sq") %>%
+  dplyr::arrange(species)
   
 fsb.weeds <- FSB.clean %>% 
   filter(species %in% c("Weeds", "Control")) %>%
-  rename(weed.biomass.g.per.sq.m = "biomass.g.per.m.sq")
+  rename(weed.biomass.g.per.sq.m = "biomass.g.per.m.sq") %>%
+  dplyr::arrange(species)
 
 fsb.wide <- fsb.weeds  %>% 
   left_join(fsb.crops, by = c("block", "treatment")) %>%
   select(block, treatment, species.x, species.y, crop.biomass.g.per.sq.m, weed.biomass.g.per.sq.m) %>%
   mutate(crop.biomass.g.per.sq.m = replace_na(crop.biomass.g.per.sq.m, 0),
-         species.y = replace_na(species.y, "none"))
+         species.y = replace_na(species.y, "none")) %>%
+  dplyr::arrange(species.y)
 
 write.csv(fsb.wide, "2-Data/Clean/fsb_wide.csv", row.names = FALSE)  
