@@ -1,0 +1,280 @@
+---
+output: 
+#  bookdown::html_document2: 
+#  bookdown::pdf_document2:
+  bookdown::word_document2:
+    keep_tex: yes
+    keep_md: yes
+    toc: false
+    number_sections: false
+#bibliography: NECCC-test.bib
+---
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.dim = c(10, 6), fig.fullwidth=TRUE)
+library(readr) # for read_csv
+library(emmeans) # for join_test
+library(ggResidpanel)
+library(tidyverse)
+library(kableExtra)
+library(ggplot2); theme_set(theme_bw())
+library(flextable)
+library(patchwork)
+library(magrittr)
+```
+
+Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure \@ref(fig:summ).  
+```{r summ, echo = FALSE, fig.cap = "Arithmetic means of crop and weed biomass."}
+fsb.long <- read_csv("../2-Data/Clean/fsb_long.csv")
+
+
+fsb.long %>% 
+  filter(!treatment %in% c("O", "P")) %>%
+  group_by(treatment, species) %>%
+    summarise(biomass = mean(biomass.g.per.m.sq),
+    sd = sd(biomass.g.per.m.sq),
+    n = n(),
+    se = sd / sqrt(n)) %>%
+  mutate(tag = ifelse(species %in% c("Control", "Weeds"), "Weed", "Crop")) %>% 
+  ggplot(aes(x = species, y = biomass, fill = tag)) +
+  geom_bar(stat = "identity", position = "dodge") + 
+  geom_errorbar( aes(x = species, ymin = biomass - sd, ymax = biomass + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
+  ylab(expression(paste("Raw mean biomass (",g~m^{"-2"},")"))) +
+  xlab(" ") + 
+  facet_grid( ~ treatment, space = "free", scale = "free") + 
+   theme(legend.title= element_blank()) + 
+  scale_x_discrete(guide = guide_axis(angle = 40)) 
+```
+
+
+
+
+```{r, include=FALSE}
+fsb <- read_csv("../2-Data/Clean/fsb_wide.csv")
+```
+
+```{r include=FALSE, eval=FALSE}
+fsb.crops <- fsb %>% filter(species.x != "Control")
+
+```
+
+
+### Model diagnosis 
+
+Using `ggResidpanel` version 0.3.0 (Goode and Rey, 2019) for model diagnosis, no predictable pattern in the plots of residuals vs. predicted values suggests that the analysis models fit the data well (Figures \@ref(fig:diag-crops) and \@ref(fig:diag-weeds)), but AIC values of the ANCOVA models were lower than those of the ANOVA models: 486 vs. 494 for crop responses in ANCOVA vs. ANOVA; and 157 vs. 173 for weed biomass responses in ANCOVA vs ANOVA.   
+
+
+### Crop biomass in response to treatment and weed biomass 
+
+
+```{r diag-crops-ancova, fig.cap = "Diagnosis plot for the ANCOVA and ANOVA models of crop biomass responses"}
+fsb.crops <- fsb %>% filter(!treatment %in% c("N", "P", "O")) # Control treatments had no crop
+crops.lm1 <- lm(crop.biomass.g.per.sq.m  ~ as.factor(block) + treatment + weed.biomass.g.per.sq.m, data = fsb.crops)
+
+
+crops.lm2 <- lm(crop.biomass.g.per.sq.m  ~ as.factor(block) + treatment , data = fsb.crops)
+resid_panel(crops.lm2)
+
+
+list(crops.lm1, crops.lm2) %>% 
+  lapply(resid_panel, nrow = 2) %>% 
+  wrap_plots() +
+  plot_annotation(tag_levels = "A")
+
+# AIC(crops.lm1, crops.lm2)
+```
+
+
+### Weed biomass in response to treatment and crop biomass - ANCOVA
+```{r diag-weeds, fig.cap = "Diagnosis plot for the linear model of weed biomass responding to treatment and crop biomass"}
+
+
+fsb.weeds.N <- fsb %>% filter(!treatment %in% c("P", "O")) #retain the first control treatment only
+
+weeds.lm1 <- lm(log(weed.biomass.g.per.sq.m + 1) ~ as.factor(block) + treatment + crop.biomass.g.per.sq.m, data = fsb.weeds.N)
+
+
+weeds.lm2 <- lm(log(weed.biomass.g.per.sq.m + 1) ~ as.factor(block) + treatment , data = fsb.weeds.N)
+
+list(weeds.lm1, weeds.lm2) %>% 
+  lapply(resid_panel, nrow = 2) %>% 
+  wrap_plots() +
+  plot_annotation(tag_levels = "A")
+
+# AIC(weeds.lm1, weeds.lm2)
+
+```
+
+### Results  
+
+Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table \@ref(tab:anova-weeds)), even though crop biomass differed by species (Table \@ref(tab:anova-crops)). Crop biomass was the strongest factor affecting weed biomass (Table \@ref(tab:anova-crops)).
+
+```{r ancova, include=FALSE}
+#Make a side by side table 
+crops.ancova <- joint_tests(crops.lm1) %>% print(export = TRUE)
+weeds.ancova <- joint_tests(weeds.lm1) %>% print(export = TRUE)
+```
+
+```{r, eval=FALSE, include=FALSE}
+cbind( weeds.ancova$summary, crops.ancova$summary) %>%
+  kable(caption = "ANCOVA tables of crop and weed responses") %>%
+  add_header_above(c(" " = 1,  "Weed" = 5, "Crop" = 5))
+```
+
+```{r ancova-weeds, echo=FALSE}
+weeds.ancova.df <- as.data.frame(weeds.ancova$summary)
+
+weeds.ancova.df %>%
+  flextable() %>%
+  set_caption("ANCOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.")
+```
+
+```{r ancova-crops, echo=FALSE}
+crops.ancova.df <- as.data.frame(crops.ancova$summary)
+
+crops.ancova.df %>%
+  flextable() %>%
+  set_caption("ANCOVA for crop biomass response. Crop biomass was analyzed on the original scale.")
+```
+
+```{r anova, include=FALSE}
+#Make a side by side table 
+crops.anova <- joint_tests(crops.lm2) %>% print(export = TRUE)
+weeds.anova <- joint_tests(weeds.lm2) %>% print(export = TRUE)
+```
+
+```{r, eval=FALSE, include=FALSE}
+cbind( weeds.anova$summary, crops.anova$summary) %>%
+  kable(caption = "ANOVA tables of crop and weed responses") %>%
+  add_header_above(c(" " = 1,  "Weed" = 5, "Crop" = 5))
+```
+
+```{r anova-weeds, echo=FALSE}
+weeds.anova.df <- as.data.frame(weeds.anova$summary)
+
+weeds.anova.df %>%
+  flextable() %>%
+  set_caption("ANOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.")
+```
+
+```{r anova-crops, echo=FALSE}
+crops.anova.df <- as.data.frame(crops.anova$summary)
+
+crops.anova.df %>%
+  flextable() %>%
+  set_caption("ANOVA for crop biomass response. Crop biomass was analyzed on the original scale.")
+```
+
+
+```{r, echo=FALSE}
+weeds.emm <- emmeans(weeds.lm1, "treatment", type = "response")
+
+#weeds.emm 
+
+# emmip(weeds.lm, treatment ~ crop.biomass.g.per.sq.m, cov.reduce = range)
+
+weeds_labels <- c("Radish",
+"Turnip",
+"Rapeseed",
+"Collard", 
+"Broadleaf Mustard",
+"Mustard",
+"Brown mustard", 
+"Oriental Mustard",
+"Arugula",
+"Winter Camelina",
+"Kale",
+"Red Clover",
+"Alfalfa", 
+rep("Control", 3))
+
+crops_labels <- c("Radish",
+"Turnip",
+"Rapeseed",
+"Collard", 
+"Broadleaf Mustard",
+"Mustard",
+"Brown mustard", 
+"Oriental Mustard",
+"Arugula",
+"Winter Camelina",
+"Kale",
+"Red Clover",
+"Alfalfa")
+```
+
+```{r, eval=FALSE, include=FALSE}
+weeds.lm2 <- lm(weed.biomass.g.per.sq.m  ~ as.factor(block) + treatment + crop.biomass.g.per.sq.m, data = fsb)
+joint_tests(weeds.lm2)
+resid_panel(weeds.lm2)
+```
+
+```{r, eval=FALSE, include=FALSE}
+weeds.lm3 <- lm(log(weed.biomass.g.per.sq.m +  min(weed.biomass.g.per.sq.m[weed.biomass.g.per.sq.m > 0]))  ~ as.factor(block) +  crop.biomass.g.per.sq.m, data = fsb)
+joint_tests(weeds.lm3)
+resid_panel(weeds.lm3)
+```
+
+```{r, eval=FALSE, include=FALSE}
+weeds.lm4 <- lm(log(weed.biomass.g.per.sq.m +  min(weed.biomass.g.per.sq.m[weed.biomass.g.per.sq.m > 0]))  ~ as.factor(block) +  treatment, data = fsb)
+joint_tests(weeds.lm4)
+resid_panel(weeds.lm4)
+```
+
+Estimated marginal means of weed and crop biomass in each treatment are shown in Figures \@ref(fig:weed-contrast) and \@ref(fig:crop-contrast).    
+
+
+```{r weed-contrast, echo=FALSE, fig.cap= "Estimated marginal means of weed biomass (back transformed from ln(x +1)."}
+
+weeds.emmip <- emmip(weeds.lm1, ~ treatment, type = "response", plotit = FALSE)
+weeds.emmip %>% 
+  mutate(sd = 2*SE) %>%
+  ggplot(aes(x = treatment, y = yvar)) +
+  geom_bar(stat="identity") + 
+  geom_errorbar( aes(x=treatment, ymin=yvar-sd, ymax=yvar+sd), width=0.4, colour="orange", alpha=0.9, size=1.3) + 
+  ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  xlab("Treatment") + 
+  scale_x_discrete(guide = guide_axis(angle = 40), labels = weeds_labels)
+  
+```
+
+
+```{r weed-contrast4, eval=FALSE, include=FALSE}
+plot(emmeans(weeds.lm4, "treatment"), comparisons = TRUE) + 
+  xlab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  ylab("Treatment")
+```
+
+```{r crop-contrast, echo=FALSE, fig.cap= "Estimated marginal means of crop biomass."}
+crops.emmip <- emmip(crops.lm1, ~ treatment , type = "response", plotit = FALSE)
+crops.emmip %>% 
+  mutate(sd = 2*SE) %>%
+  ggplot(aes(x = treatment, y = yvar)) +
+  geom_bar(stat="identity") + 
+  geom_errorbar( aes(x =  treatment , ymin = yvar-sd, ymax = yvar+sd), width=0.4, colour="orange", alpha=0.9, size=1.3) + 
+  ylab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
+  xlab("Treatment") + 
+  scale_x_discrete(guide = guide_axis(angle = 40), labels = crops_labels)
+```
+
+The arrow plots below (Figures \@ref(fig:weed-emmip) and \@ref(fig:crop-emmip)) convey the same information with the bar charts, but are quicker to make. 
+
+```{r weed-emmip, echo = FALSE, fig.cap= "Estimated marginal means of weed biomass (back transformed from ln(x +1)). The black dots are the estimated marginal means. The blue bars indicate the estimated 95% confidence intervals. The arrows indicate whether two estimated means were significantly different. Overlapping arrows means non-significant difference."}
+## emmip
+# plot(emmeans(weeds.lm, "treatment", type = "response"), comparisons = TRUE) + 
+#   xlab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+#   ylab("Treatment")
+
+
+plot(emmeans(weeds.lm1, "treatment", type = "response"), comparisons = TRUE) + 
+  xlab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  ylab("Treatment") + 
+  scale_y_discrete(labels = weeds_labels)
+```
+
+```{r crop-emmip, echo = FALSE, fig.cap= "Estimated marginal means of crop biomass. The blue bars indicate the estimated 95% confidence intervals. The black dots are the estimated marginal means. The arrows indicate whether two estimated means were significantly different. Overlapping arrows means non-significant difference."}
+plot(emmeans(crops.lm1, "treatment"), comparisons = TRUE) + 
+  xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
+  ylab("Treatment") + 
+  scale_y_discrete(labels = crops_labels)
+```
