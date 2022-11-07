@@ -62,6 +62,7 @@ fsb.wide <- read_csv("../2-Data/Clean/fsb_wide.csv")
 levels(factor(fsb.wide$species.y)) 
 
 # move "None" (bare soil) to the front in all plots
+
 fsb.wide$species.y <- factor(fsb.wide$species.y, levels = c("None",
                                                             "Arugula" ,    
                                                             "Broadleaf mustard",
