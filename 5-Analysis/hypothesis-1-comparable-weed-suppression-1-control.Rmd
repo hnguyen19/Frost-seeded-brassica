@@ -11,7 +11,12 @@ output:
 ---
 
 ```{r , include=FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.dim = c(10, 6), fig.fullwidth=TRUE)
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      fig.dim = c(10, 6), 
+                      fig.fullwidth=TRUE, 
+                      dev = "jpeg",
+                      dpi = 900)
 library(readr) # for read_csv
 library(emmeans) # for join_test
 library(ggResidpanel)
@@ -85,7 +90,7 @@ $B_c$ is crop biomass in cover crop treatment
 #   summarize(mean_weed_control = mean(weed.biomass.g.per.sq.m))  # 148
 ```
 
-```{r nls-plot, echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
+```{r nls-plot,echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
 nls.brassica <-  nls(weed.biomass.g.per.sq.m ~ 148 / (1 + i.w * crop.biomass.g.per.sq.m),
     start = list(i.w = 0),
     data = fsb.wide)
@@ -110,7 +115,7 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
   xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
   geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
-  geom_hline(yintercept = 110, color = "grey", linetype="dashed") + 
+  geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
   labs(color= 'Cover crop')
 ```
 
