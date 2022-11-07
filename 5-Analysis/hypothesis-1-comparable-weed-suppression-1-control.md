@@ -23,7 +23,7 @@ Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure <a href="#f
 
 ### Results  
 
-Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table <a href="#tab:ancova-weeds">1</a>), even though crop biomass differed by species (Table <a href="#tab:ancova-crops">2</a>). Crop biomass was the strongest factor affecting weed biomass (Table <a href="#tab:ancova-crops">2</a> and Figure <a href="#fig:nls-plot">2</a>).  
+Crop biomass was the strongest factor affecting weed biomass (Table <a href="#tab:ancova-crops">2</a> so a non-linear regression was fitted for crop - weed competition (Figure <a href="#fig:nls-plot">2</a>). Collard's weed suppression was distinctive among all the treatments (Table <a href="#tab:anova-crops">4</a>.   
 
 
 
@@ -42,6 +42,8 @@ $B_c$ is crop biomass in cover crop treatment
 
 
 ### Linear model diagnosis 
+
+Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table <a href="#tab:ancova-weeds">1</a>), even though crop biomass differed by species (Table <a href="#tab:ancova-crops">2</a>). 
 
 Using `ggResidpanel` version 0.3.0 (Goode and Rey, 2019) for model diagnosis, no predictable pattern in the plots of residuals vs. predicted values suggests that the analysis models fit the data well (Figures <a href="#fig:diag-crops"><strong>??</strong></a> and <a href="#fig:diag-weeds">5</a>), but AIC values of the ANCOVA models were lower than those of the ANOVA models: 448 vs. 459 for crop responses in ANCOVA vs. ANOVA; and 159 vs. 174 for weed biomass responses in ANCOVA vs ANOVA.   
 

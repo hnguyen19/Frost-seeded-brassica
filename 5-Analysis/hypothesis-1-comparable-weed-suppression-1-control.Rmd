@@ -59,12 +59,27 @@ fsb.long %>%
 
 ```{r, include=FALSE}
 fsb.wide <- read_csv("../2-Data/Clean/fsb_wide.csv")
+levels(factor(fsb.wide$species.y)) 
+
+# move "None" (bare soil) to the front in all plots
+fsb.wide$species.y <- factor(fsb.wide$species.y, levels = c("None",
+                                                            "Arugula" ,    
+                                                            "Broadleaf mustard",
+                                                            "Brown mustard",
+                                                            "Collard",
+                                                            "Kale",
+                                                            "Mustard",
+                                                            "Oriental mustard",
+                                                            "Radish",
+                                                            "Rapeseed",
+                                                            "Red clover",
+                                                            "Turnip" ))
 ```
 
 
 ### Results  
 
-Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table \@ref(tab:ancova-weeds)), even though crop biomass differed by species (Table \@ref(tab:ancova-crops)). Crop biomass was the strongest factor affecting weed biomass (Table \@ref(tab:ancova-crops) and Figure \@ref(fig:nls-plot)).  
+Crop biomass was the strongest factor affecting weed biomass (Table \@ref(tab:ancova-crops) so a non-linear regression was fitted for crop - weed competition (Figure \@ref(fig:nls-plot)). Collard's weed suppression was distinctive among all the treatments (Table \@ref(tab:anova-crops).   
 
 
 ```{r raw-competition-scatter, include=FALSE}
@@ -107,8 +122,8 @@ group_by(species.y) %>%
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  ggplot(aes(x = mean_x, y = mean_y )) +
-  geom_line(aes(y=predict(nls.brassica)), size = 2) + 
-  geom_point(aes( color = species.y), size = 3, data = fsb.wide.summ ) +
+  geom_line(aes(y=predict(nls.brassica)), size = 4) + 
+  geom_point(aes( color = species.y), size = 5, data = fsb.wide.summ ) +
  scale_colour_brewer(palette="Paired") +
   ylim(28, 190) +
   xlim(0, 170) +
@@ -116,12 +131,15 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
   geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
   geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
-  labs(color= 'Cover crop')
+  labs(color= 'Cover crop') + 
+  theme(text = element_text(size=20))
 ```
 
 
 
 ### Linear model diagnosis 
+
+Weed suppression from different *Brassicacaea* species was comparable among each other and with the control treatments (Table \@ref(tab:ancova-weeds)), even though crop biomass differed by species (Table \@ref(tab:ancova-crops)). 
 
 Using `ggResidpanel` version 0.3.0 (Goode and Rey, 2019) for model diagnosis, no predictable pattern in the plots of residuals vs. predicted values suggests that the analysis models fit the data well (Figures \@ref(fig:diag-crops) and \@ref(fig:diag-weeds)), but AIC values of the ANCOVA models were lower than those of the ANOVA models: 448 vs. 459 for crop responses in ANCOVA vs. ANOVA; and 159 vs. 174 for weed biomass responses in ANCOVA vs ANOVA.   
 
@@ -298,8 +316,8 @@ crops.emmip <- emmip(crops.lm1, ~ species.y , type = "response", plotit = FALSE)
 crops.emmip %>% 
   mutate(sd = 2*SE) %>%
   ggplot(aes(x = species.y, y = yvar)) +
-  geom_bar(stat="identity") + 
-  geom_errorbar( aes(x = species.y, ymin = yvar-sd, ymax = yvar+sd), width=0.4, colour="orange", alpha=0.9, size=1.3) + 
+  geom_bar(stat="identity", fill = "#222222") + 
+  geom_errorbar( aes(x = species.y, ymin = yvar-sd, ymax = yvar+sd), width=0.4, colour="#B31B1B", alpha=0.9, size=1.3) + 
   ylab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
   xlab("Treatment")  + scale_x_discrete(guide = guide_axis(angle = 40)) #, labels = crops_labels)
 ```
