@@ -27,6 +27,7 @@ library(flextable)
 library(patchwork)
 library(magrittr)
 library(nls2)
+library(nlstools)
 ```
 
 Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure \@ref(fig:summ).  
@@ -111,7 +112,10 @@ nls.brassica <-  nls(weed.biomass.g.per.sq.m ~ 148 / (1 + i.w * crop.biomass.g.p
     start = list(i.w = 0),
     data = fsb.wide)
 
-#summary(nls.brassica )
+summary(nls.brassica )
+
+# plot(residuals(nls.brassica))
+
 # max(fsb.wide.summ$crop.biomass.g.per.sq.m) #  135.59 
 # 
 # max(fsb.wide.summ$weed.biomass.g.per.sq.m) # 171.32
