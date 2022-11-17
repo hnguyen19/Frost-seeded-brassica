@@ -26,7 +26,7 @@ FSB.clean <- FSB %>%
   mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
   select(block, treatment, species, dried.wt.bagged, sampled.area.m.sq, biomass.g.per.m.sq) %>%
   group_by(block, treatment, species) %>%
-  mutate(dried.wt.bagged = mean(dried.wt.bagged), 
+  summarize(dried.wt.bagged = mean(dried.wt.bagged), 
          sampled.area.m.sq = mean(sampled.area.m.sq), 
          biomass.g.per.m.sq = mean(biomass.g.per.m.sq))  ## Treat all the controls as subsamples and average over them 
 
@@ -54,3 +54,23 @@ fsb.wide <- fsb.weeds  %>%
   dplyr::arrange(species.y)
 
 write.csv(fsb.wide, "2-Data/Clean/fsb_wide.csv", row.names = FALSE)  
+
+
+
+coverage <- read_excel("2-Data/Raw/Rawdata_FSBrassica_RA.team.xlsx",  sheet = 2)
+
+
+coverage.clean <- coverage %>%
+  select(1:2) %>%
+  rename(speculative.pct.coverage = "Speculative % Cover") %>%
+  mutate(block = substr(Barcode, 5,5),
+         treatment = substr(Barcode, 7,7),
+         species = str_to_sentence(str_sub(Barcode, start=9), locale = "en")) %>% # species names to sentence case 
+  filter(!treatment %in% c("J", "M")) %>% #Winter camelina did not survive and alfalfa (treatment M) was not supposed to be frost-seeded a
+  mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N"))  %>% #rename O and P as N for grouping in the next step  
+  select(block, treatment, species, speculative.pct.coverage) %>%
+  group_by(block, treatment, species) %>%
+  summarize(speculative.pct.coverage = mean(speculative.pct.coverage))  ## Treat all the controls as subsamples and average over them 
+
+
+write.csv(coverage.clean, "2-Data/Clean/coverage_clean.csv", row.names = FALSE)  

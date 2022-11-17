@@ -1,0 +1,49 @@
+"block","treatment","species","speculative.pct.coverage"
+"1","A","Radish",10
+"1","B","Turnip",35
+"1","C","Rapeseed",0
+"1","D","Collard",45
+"1","E","Broadleaf mustard",35
+"1","F","Mustard",45
+"1","G","Brown mustard",50
+"1","H","Oriental mustard",40
+"1","I","Arugula",2.5
+"1","K","Kale",15
+"1","L","Red clover",2.5
+"1","N","Control",0
+"2","A","Radish",2.5
+"2","B","Turnip",20
+"2","C","Rapeseed",7.5
+"2","D","Collard",55
+"2","E","Broadleaf mustard",25
+"2","F","Mustard",40
+"2","G","Brown mustard",35
+"2","H","Oriental mustard",45
+"2","I","Arugula",5
+"2","K","Kale",15
+"2","L","Red clover",2.5
+"2","N","Control",0
+"3","A","Radish",5
+"3","B","Turnip",10
+"3","C","Rapeseed",0
+"3","D","Collard",20
+"3","E","Broadleaf mustard",15
+"3","F","Mustard",30
+"3","G","Brown mustard",25
+"3","H","Oriental mustard",20
+"3","I","Arugula",2.5
+"3","K","Kale",5
+"3","L","Red clover",2.5
+"3","N","Control",0
+"4","A","Radish",2.5
+"4","B","Turnip",5
+"4","C","Rapeseed",5
+"4","D","Collard",30
+"4","E","Broadleaf mustard",20
+"4","F","Mustard",25
+"4","G","Brown mustard",7.5
+"4","H","Oriental mustard",20
+"4","I","Arugula",2.5
+"4","K","Kale",15
+"4","L","Red clover",5
+"4","N","Control",0
