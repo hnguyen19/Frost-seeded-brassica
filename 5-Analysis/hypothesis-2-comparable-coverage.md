@@ -20,7 +20,7 @@ Arithmetic means of speculative coverage are in Figure \@ref(fig:summ-coverage).
 </div>
 
 ```r
-coverage.lm1 <- lm(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage)
+coverage.lm1 <- lm(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage, subset = (treatment != "N"))
 resid_panel(coverage.lm1)
 ```
 
@@ -32,15 +32,19 @@ joint_tests(coverage.lm1)
 
 ```
 ##  model term df1 df2 F.ratio p.value
-##  block        3  33   8.267  0.0003
-##  species     11  33  13.630  <.0001
+##  block        3  30   8.800  0.0002
+##  species     10  30  12.567  <.0001
 ```
 
 
 ```r
 plot(emmeans(coverage.lm1 , "species"), comparisons = TRUE) + 
   xlab("Speculative coverage (%)" ) +
-  ylab("Species") #+ scale_y_discrete(labels = crops_labels)
+  ylab("Species")  + 
+  theme(text = element_text(size=20))
 ```
 
-![](hypothesis-2-comparable-coverage_files/figure-html/unnamed-chunk-3-1.jpeg)<!-- -->
+<div class="figure">
+<img src="hypothesis-2-comparable-coverage_files/figure-html/cover-emmip-1.jpeg" alt="Estimate speculative percent coverage of different cover crop species"  />
+<p class="caption">(\#fig:cover-emmip)Estimate speculative percent coverage of different cover crop species</p>
+</div>

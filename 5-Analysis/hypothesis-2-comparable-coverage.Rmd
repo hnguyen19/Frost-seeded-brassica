@@ -35,34 +35,50 @@ Arithmetic means of speculative coverage are in Figure \@ref(fig:summ-coverage).
 ```{r summ-coverage, echo = FALSE, fig.cap = "Arithmetic means of crop speculative coverage."}
 coverage <- read_csv("../2-Data/Clean/coverage_clean.csv")
 
+coverage$species <- factor(coverage$species, levels = c("Control",
+                                                            "Arugula" ,    
+                                                            "Broadleaf mustard",
+                                                            "Brown mustard",
+                                                            "Collard",
+                                                            "Kale",
+                                                            "Mustard",
+                                                            "Oriental mustard",
+                                                            "Radish",
+                                                            "Rapeseed",
+                                                            "Red clover",
+                                                            "Turnip" ))
+
 # Make sure that the levels are kept  
 
 #levels(factor(coverage$treatment))   #A B C D E F G H I J K L N
 
 coverage %>%
   filter(treatment != "N") %>%
-  group_by(species) %>%
-    summarise(speculative.pct.coverage = mean(speculative.pct.coverage),
+  dplyr::group_by(treatment, species) %>%
+    mutate(sp.coverage = mean(speculative.pct.coverage),
     sd = sd(speculative.pct.coverage),
     n = n(),
     se = sd / sqrt(n)) %>%
-  ggplot(aes(x = species, y = speculative.pct.coverage)) +
-  geom_bar(stat = "identity", position = "dodge") + 
-  geom_errorbar( aes(x = species, ymin = speculative.pct.coverage - sd, ymax = speculative.pct.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
+  ggplot(aes(x = species, y = sp.coverage)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "#B31B1B") + 
+  geom_errorbar( aes(x = species, ymin = sp.coverage - sd, ymax = sp.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
   ylab("Speculative coverage (%)" ) +
   xlab(" ") + 
    theme(legend.title= element_blank()) + 
   scale_x_discrete(guide = guide_axis(angle = 40)) 
+
+
 ```
 ```{r}
-coverage.lm1 <- lm(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage)
+coverage.lm1 <- lm(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage, subset = (treatment != "N"))
 resid_panel(coverage.lm1)
 
 joint_tests(coverage.lm1)
 ```
 
-```{r}
+```{r cover-emmip, fig.cap = "Estimate speculative percent coverage of different cover crop species"}
 plot(emmeans(coverage.lm1 , "species"), comparisons = TRUE) + 
   xlab("Speculative coverage (%)" ) +
-  ylab("Species") #+ scale_y_discrete(labels = crops_labels)
+  ylab("Species")  + 
+  theme(text = element_text(size=20))
 ```
