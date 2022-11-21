@@ -39,9 +39,12 @@ joint_tests(coverage.lm1)
 
 ```r
 plot(emmeans(coverage.lm1 , "species"), comparisons = TRUE) + 
+#    scale_y_discrete(limits = rev(levels(species))) +
   xlab("Speculative coverage (%)" ) +
-  ylab("Species")  + 
-  theme(text = element_text(size=20))
+  ylab("Cover crop")  + 
+#  coord_flip() +
+  theme(text = element_text(size=20)) +
+  theme_classic()
 ```
 
 <div class="figure">
