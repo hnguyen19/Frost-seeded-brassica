@@ -21,7 +21,8 @@ FSB.clean <- FSB %>%
 #         group = ifelse(species %in% c("Alfalfa", "Red Clover", "Control"), "C", "B"), # C for control, B for brassicas | # controls are alfalfa, red clover, and no cover crop
          dried.wt = dried.wt.bagged - bag.wt,
          sampled.area.m.sq = 0.25,
-         biomass.g.per.m.sq = dried.wt/sampled.area.m.sq)  %>% 
+         biomass.g.per.m.sq = dried.wt/sampled.area.m.sq,
+new.column = "i")  %>% 
   filter(!treatment %in% c("J", "M")) %>% #Winter camelina did not survive and alfalfa (treatment M) was not supposed to be frost-seeded a
   mutate(treatment = ifelse(treatment %in% LETTERS[1:12], treatment, "N")) %>% #rename O and P as N for grouping in the next step  
   select(block, treatment, species, dried.wt.bagged, sampled.area.m.sq, biomass.g.per.m.sq) %>%
