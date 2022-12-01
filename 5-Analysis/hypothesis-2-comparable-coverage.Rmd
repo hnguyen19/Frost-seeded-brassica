@@ -28,6 +28,7 @@ library(patchwork)
 library(magrittr)
 library(nls2)
 library(nlstools)
+library(multcompView) # for compact letter display
 ```
 
 
@@ -66,9 +67,9 @@ coverage %>%
   xlab(" ") + 
    theme(legend.title= element_blank()) + 
   scale_x_discrete(guide = guide_axis(angle = 40)) 
-
-
 ```
+
+
 ```{r}
 coverage.lm1 <- lm(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage, subset = (treatment != "N"))
 resid_panel(coverage.lm1)
@@ -84,4 +85,40 @@ plot(emmeans(coverage.lm1 , "species"), comparisons = TRUE) +
 #  coord_flip() +
   theme(text = element_text(size=20)) +
   theme_classic()
+```
+```{r}
+coverage.emm <- emmeans(coverage.lm1 , "species") %>% as.data.frame()
+
+anova <- aov(speculative.pct.coverage   ~ as.factor(block) + species , data = coverage, subset = (treatment != "N"))
+
+# Tukey's test
+tukey <- TukeyHSD(anova )
+
+# compact letter display
+cld <- multcompLetters4(anova, tukey)
+# https://www.mathiasecology.com/code 
+cld.df <- data.frame(multcompLetters(TukeyHSD(anova)$species[,4])$Letters) 
+
+cld.df$species <- rownames(cld.df)
+
+coverage.emm %>% left_join(cld.df, by = "species")
+```
+
+```{r coverage-letters}
+coverage %>%
+  filter(treatment != "N") %>%
+  dplyr::group_by(treatment, species) %>%
+    mutate(sp.coverage = mean(speculative.pct.coverage),
+    sd = sd(speculative.pct.coverage),
+    n = n(),
+    se = sd / sqrt(n)) %>%
+  left_join(cld.df, by = "species") %>%
+  ggplot(aes(x = species, y = sp.coverage)) +
+  geom_bar(stat = "identity", position = "dodge", fill = "#B31B1B") + 
+  geom_errorbar( aes(x = species, ymin = sp.coverage - sd, ymax = sp.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
+  geom_text(aes(y = 55, x = species, label = multcompLetters.TukeyHSD.anova..species...4...Letters)) +
+  ylab("Speculative coverage (%)" ) +
+  xlab(" ") + 
+   theme(legend.title= element_blank()) + 
+  scale_x_discrete(guide = guide_axis(angle = 40)) 
 ```
