@@ -127,9 +127,8 @@ group_by(species.y) %>%
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  ggplot(aes(x = mean_x, y = mean_y )) +
-  geom_line(aes(y=predict(nls.brassica)), size = 4) + 
-  geom_point(aes( color = species.y), size = 5, data = fsb.wide.summ ) +
- scale_colour_brewer(palette="Paired") +
+  geom_line(aes(y=predict(nls.brassica)), size = 2) + 
+  geom_point(aes( color = species.y), size = 3, data = fsb.wide.summ ) +
   ylim(28, 190) +
   xlim(0, 170) +
   ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
@@ -137,7 +136,35 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
   geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
   labs(color= 'Cover crop') + 
-  theme(text = element_text(size=20))
+  scale_colour_discrete(name  ="Cover crop",
+                            breaks=c("None",
+                                                            "Arugula" ,    
+                                                            "Broadleaf mustard",
+                                                            "Brown mustard",
+                                                            "Collard",
+                                                            "Kale",
+                                                            "Mustard",
+                                                            "Oriental mustard",
+                                                            "Radish",
+                                                            "Rapeseed",
+                                                            "Red clover",
+                                                            "Turnip" ),
+                            labels = c("None",
+                                       "Arugula \n (Eruca vesicaria)" ,
+                            "Broadleaf mustard \n (Brassica juncea)",
+                            "Brown mustard \n (Brassica juncea)",
+                            "Collard \n (Brassica oleracea)",
+                            "Kale \n (Brassica oleracea)",
+                            "Mustard \n (Sinapis alba)",
+                            "Oriental mustard \n (Brassica juncea)",
+                            "Radish \n (Raphanus raphanistrum subsp. sativus)",
+                            "Rapeseed \n (Brassica napus)",
+                            "Red clover \n (Trifolium pratense)",
+                            "Turnip \n (Brassica rapa)" ), 
+                        palette="Paired") +
+#   scale_colour_brewer(palette="Paired") +
+#  scale_fill_brewer(palette="Paired") +
+  theme(text = element_text(size=15))
 ```
 
 
