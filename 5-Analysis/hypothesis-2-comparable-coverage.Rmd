@@ -49,6 +49,20 @@ coverage$species <- factor(coverage$species, levels = c("Control",
                                                             "Red clover",
                                                             "Turnip" ))
 
+coverage$species2 <- factor(coverage$species, levels = c("Control",
+                                                            "Arugula (Eruca vesicaria)" ,    
+                                                            "Broadleaf mustard (Brassica juncea)",
+                                                            "Brown mustard (Brassica juncea)",
+                                                            "Collard (Brassica oleracea)",
+                                                            "Kale (Brassica oleracea)",
+                                                            "Mustard (Sinapis alba)",
+                                                            "Oriental mustard (Brassica juncea)",
+                                                            "Radish (Raphanus raphanistrum subsp. sativus)",
+                                                            "Rapeseed (Brassica napus)",
+                                                            "Red clover (Trifolium pratense)",
+                                                            "Turnip (Brassica rapa)" ))
+
+
 # Make sure that the levels are kept  
 
 #levels(factor(coverage$treatment))   #A B C D E F G H I J K L N
@@ -107,7 +121,7 @@ coverage.emm %>% left_join(cld.df, by = "species")
 ```{r coverage-letters}
 coverage %>%
   filter(treatment != "N") %>%
-  dplyr::group_by(treatment, species) %>%
+  dplyr::group_by(treatment, species2) %>%
     mutate(sp.coverage = mean(speculative.pct.coverage),
     sd = sd(speculative.pct.coverage),
     n = n(),
@@ -116,9 +130,20 @@ coverage %>%
   ggplot(aes(x = species, y = sp.coverage)) +
   geom_bar(stat = "identity", position = "dodge", fill = "#B31B1B") + 
   geom_errorbar( aes(x = species, ymin = sp.coverage - sd, ymax = sp.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
-  geom_text(aes(y = 55, x = species, label = multcompLetters.TukeyHSD.anova..species...4...Letters)) +
+  geom_text(aes(y = 59, x = species, label = multcompLetters.TukeyHSD.anova..species...4...Letters)) +
   ylab("Speculative coverage (%)" ) +
   xlab(" ") + 
    theme(legend.title= element_blank()) + 
-  scale_x_discrete(guide = guide_axis(angle = 40)) 
+  scale_x_discrete(labels= expression("Arugula \n (Eruca vesicaria)" ,
+                            "Broadleaf mustard \n (Brassica juncea)",
+                            "Brown mustard \n (Brassica juncea)",
+                            "Collard \n (Brassica oleracea)",
+                            "Kale \n (Brassica oleracea)",
+                            "Mustard \n (Sinapis alba)",
+                            "Oriental mustard \n (Brassica juncea)",
+                            "Radish \n (Raphanus raphanistrum subsp. sativus)",
+                            "Rapeseed \n (Brassica napus)",
+                            "Red clover \n (Trifolium pratense)",
+                            "Turnip \n (Brassica rapa)" ),
+                   guide = guide_axis(angle = 40)) # + scale_x_discrete(guide = guide_axis(angle = 40)) 
 ```
