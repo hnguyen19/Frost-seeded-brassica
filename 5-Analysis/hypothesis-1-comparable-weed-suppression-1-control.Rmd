@@ -1,8 +1,8 @@
 ---
 output: 
-#  bookdown::html_document2: 
+  bookdown::html_document2: 
 #  bookdown::pdf_document2:
-  bookdown::word_document2:
+#  bookdown::word_document2:
     keep_tex: yes
     keep_md: yes
     toc: false
