@@ -118,8 +118,9 @@ coverage %>%
   geom_text(aes(y = 59, x = species, label = multcompLetters.TukeyHSD.anova..species...4...Letters)) +
   ylab("Speculative coverage (%)" ) +
   xlab(" ") + 
-   theme(legend.title= element_blank()) + 
-  scale_x_discrete(labels= expression("Arugula \n (Eruca vesicaria)" ,
+   theme(legend.title= element_blank(),
+         axis.text.x = element_text(face = "italic")) + 
+  scale_x_discrete(labels= c("Arugula \n (Eruca vesicaria)" ,
                             "Broadleaf mustard \n (Brassica juncea)",
                             "Brown mustard \n (Brassica juncea)",
                             "Collard \n (Brassica oleracea)",
@@ -129,7 +130,7 @@ coverage %>%
                             "Radish \n (Raphanus raphanistrum subsp. sativus)",
                             "Rapeseed \n (Brassica napus)",
                             "Red clover \n (Trifolium pratense)",
-                            "Turnip \n (Brassica rapa)" ),
+                            "Turnip \n (Brassica rapa)"),
                    guide = guide_axis(angle = 40)) # + scale_x_discrete(guide = guide_axis(angle = 40)) 
 ```
 
