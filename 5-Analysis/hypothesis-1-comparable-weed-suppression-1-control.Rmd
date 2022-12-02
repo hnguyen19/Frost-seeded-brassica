@@ -17,6 +17,16 @@ knitr::opts_chunk$set(warning = FALSE,
                       fig.fullwidth=TRUE, 
                       dev = "jpeg",
                       dpi = 900)
+#https://github.com/tidyverse/ggplot2/pull/3833 
+opts <- options(
+  ggplot2.discrete.fill = list(
+    c("#B31B1B", "#006699"),
+#    RColorBrewer::brewer.pal(3, "Set2"),
+#    RColorBrewer::brewer.pal(6, "Accent"),
+    RColorBrewer::brewer.pal(12, "Paired") # doesn't change the nls-plot color
+  )
+)
+
 library(readr) # for read_csv
 library(emmeans) # for join_test
 library(ggResidpanel)
@@ -28,6 +38,7 @@ library(patchwork)
 library(magrittr)
 library(nls2)
 library(nlstools)
+library(RColorBrewer) #for brewer.pal
 ```
 
 Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure \@ref(fig:summ).  
@@ -124,6 +135,8 @@ group_by(species.y) %>%
  summarise(crop.biomass.g.per.sq.m = mean(crop.biomass.g.per.sq.m),
       weed.biomass.g.per.sq.m = mean(weed.biomass.g.per.sq.m)) 
 
+mannual_pallette <- c(brewer.pal(12,"Paired"))
+
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  ggplot(aes(x = mean_x, y = mean_y )) +
@@ -135,8 +148,8 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
   geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
   geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
-  labs(color= 'Cover crop') + 
-  scale_colour_discrete(name  ="Cover crop",
+#  labs(color= 'Cover crop') + 
+  scale_colour_manual(name  ="Cover crop",  #https://stackoverflow.com/questions/66115833/cannot-set-colours-as-values-in-scale-colour-discrete 
                             breaks=c("None",
                                                             "Arugula" ,    
                                                             "Broadleaf mustard",
@@ -160,12 +173,15 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
                             "Radish \n (Raphanus raphanistrum subsp. sativus)",
                             "Rapeseed \n (Brassica napus)",
                             "Red clover \n (Trifolium pratense)",
-                            "Turnip \n (Brassica rapa)" ), 
-                        palette="Paired") +
+                            "Turnip \n (Brassica rapa)" ), values = mannual_pallette) +
 #   scale_colour_brewer(palette="Paired") +
-#  scale_fill_brewer(palette="Paired") +
+#  scale_fill_manual(palette = "Paired") +
   theme(text = element_text(size=15))
+
+
 ```
+
+
 
 
 
