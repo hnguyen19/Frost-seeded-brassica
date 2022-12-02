@@ -119,6 +119,7 @@ coverage %>%
   ylab("Speculative coverage (%)" ) +
   xlab(" ") + 
    theme(legend.title= element_blank(),
+         text = element_text(size=15),
          axis.text.x = element_text(face = "italic")) + 
   scale_x_discrete(labels= c("Arugula \n (Eruca vesicaria)" ,
                             "Broadleaf mustard \n (Brassica juncea)",
