@@ -120,18 +120,8 @@ coverage %>%
   xlab(" ") + 
    theme(legend.title= element_blank(),
          text = element_text(size=15),
-         axis.text.x = element_text(face = "italic")) + 
-  scale_x_discrete(labels= c("Arugula \n (Eruca vesicaria)" ,
-                            "Broadleaf mustard \n (Brassica juncea)",
-                            "Brown mustard \n (Brassica juncea)",
-                            "Collard \n (Brassica oleracea)",
-                            "Kale \n (Brassica oleracea)",
-                            "Mustard \n (Sinapis alba)",
-                            "Oriental mustard \n (Brassica juncea)",
-                            "Radish \n (Raphanus raphanistrum subsp. sativus)",
-                            "Rapeseed \n (Brassica napus)",
-                            "Red clover \n (Trifolium pratense)",
-                            "Turnip \n (Brassica rapa)"),
+         axis.text.x = element_markdown()) + # Italics Latin names https://stackoverflow.com/questions/64067258/changing-one-character-in-axis-tick-labels-to-italic-while-keeping-multiple-line 
+  scale_x_discrete(labels = species3,
                    guide = guide_axis(angle = 40)) # + scale_x_discrete(guide = guide_axis(angle = 40)) 
 ```
 
