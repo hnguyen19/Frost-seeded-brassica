@@ -40,6 +40,7 @@ library(nls2)
 library(nlstools)
 library(RColorBrewer) #for brewer.pal
 library(ggtext) # for element_markdown()
+library(ggrepel)
 ```
 
 Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure \@ref(fig:summ).  
@@ -88,6 +89,19 @@ fsb.wide$species.y <- factor(fsb.wide$species.y, levels = c("None",
                                                             "Rapeseed",
                                                             "Red clover",
                                                             "Turnip" ))
+
+fsb.wide$species3 <-  factor(fsb.wide$species.y, levels =c("None",
+                                                            "Arugula<br>(*Eruca vesicaria*)" ,    
+                                                            "Broadleaf mustard<br>(*Brassica juncea*)",
+                                                            "Brown mustard<br>(*Brassica juncea*)",
+                                                            "Collard<br>(*Brassica oleracea*)",
+                                                            "Kale<br>(*Brassica oleracea*)",
+                                                            "Mustard<br>(*Sinapis alba*)",
+                                                            "Oriental mustard<br>(*Brassica juncea*)",
+                                                            "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+                                                            "Rapeseed<br>(*Brassica napus*)",
+                                                            "Red clover<br>(*Trifolium pratense*)",
+                                                            "Turnip<br>(*Brassica rapa*)" ))
 ```
 
 
@@ -136,20 +150,33 @@ group_by(species.y) %>%
  summarise(crop.biomass.g.per.sq.m = mean(crop.biomass.g.per.sq.m),
       weed.biomass.g.per.sq.m = mean(weed.biomass.g.per.sq.m)) 
 
+# fsb.wide.summ$species3 <- factor(fsb.wide.summ$species.y, levels =c("None",
+#                                                             "Arugula<br>(*Eruca vesicaria*)" ,    
+#                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
+#                                                             "Brown mustard<br>(*Brassica juncea*)",
+#                                                             "Collard<br>(*Brassica oleracea*)",
+#                                                             "Kale<br>(*Brassica oleracea*)",
+#                                                             "Mustard<br>(*Sinapis alba*)",
+#                                                             "Oriental mustard<br>(*Brassica juncea*)",
+#                                                             "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+#                                                             "Rapeseed<br>(*Brassica napus*)",
+#                                                             "Red clover<br>(*Trifolium pratense*)",
+#                                                             "Turnip<br>(*Brassica rapa*)" ))
+
 mannual_pallette <- c(brewer.pal(12,"Paired"))
 
-species3 <-  c("None",
-                                                            "Arugula<br>(*Eruca vesicaria*)" ,    
-                                                            "Broadleaf mustard<br>(*Brassica juncea*)",
-                                                            "Brown mustard<br>(*Brassica juncea*)",
-                                                            "Collard<br>(*Brassica oleracea*)",
-                                                            "Kale<br>(*Brassica oleracea*)",
-                                                            "Mustard<br>(*Sinapis alba*)",
-                                                            "Oriental mustard<br>(*Brassica juncea*)",
-                                                            "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
-                                                            "Rapeseed<br>(*Brassica napus*)",
-                                                            "Red clover<br>(*Trifolium pratense*)",
-                                                            "Turnip<br>(*Brassica rapa*)" )
+ species3 <-  c("None",
+                                                             "Arugula<br>(*Eruca vesicaria*)" ,    
+                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
+                                                             "Brown mustard<br>(*Brassica juncea*)",
+                                                             "Collard<br>(*Brassica oleracea*)",
+                                                             "Kale<br>(*Brassica oleracea*)",
+                                                             "Mustard<br>(*Sinapis alba*)",
+                                                             "Oriental mustard<br>(*Brassica juncea*)",
+                                                             "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+                                                             "Rapeseed<br>(*Brassica napus*)",
+                                                             "Red clover<br>(*Trifolium pratense*)",
+                                                             "Turnip<br>(*Brassica rapa*)" )
 
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
@@ -185,6 +212,23 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 ```
 
 
+```{r}
+fsb.wide.summ %>%
+ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
+    geom_point() +
+  geom_line(aes(y=predict(nls.brassica)), size = 2, data = fsb.wide) + 
+  ylim(28, 190) +
+  xlim(0, 170) +
+  ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
+  geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
+  geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
+#  geom_text_repel(show.legend = F)+
+#  labs(color= 'Cover crop') + 
+  geom_text_repel(aes(label = species3)) +
+ # geom_text(aes(labels = species3)) +
+  theme(text = element_text(size=15)) #, legend.text = element_markdown())
+```
 
 
 
