@@ -39,6 +39,7 @@ library(magrittr)
 library(nls2)
 library(nlstools)
 library(RColorBrewer) #for brewer.pal
+library(ggtext) # for element_markdown()
 ```
 
 Arithmetic means of crop and weed biomass (g/m$^{-2}$) are in Figure \@ref(fig:summ).  
@@ -137,6 +138,19 @@ group_by(species.y) %>%
 
 mannual_pallette <- c(brewer.pal(12,"Paired"))
 
+species3 <-  c("None",
+                                                            "Arugula<br>(*Eruca vesicaria*)" ,    
+                                                            "Broadleaf mustard<br>(*Brassica juncea*)",
+                                                            "Brown mustard<br>(*Brassica juncea*)",
+                                                            "Collard<br>(*Brassica oleracea*)",
+                                                            "Kale<br>(*Brassica oleracea*)",
+                                                            "Mustard<br>(*Sinapis alba*)",
+                                                            "Oriental mustard<br>(*Brassica juncea*)",
+                                                            "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+                                                            "Rapeseed<br>(*Brassica napus*)",
+                                                            "Red clover<br>(*Trifolium pratense*)",
+                                                            "Turnip<br>(*Brassica rapa*)" )
+
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  ggplot(aes(x = mean_x, y = mean_y )) +
@@ -162,23 +176,12 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
                                                             "Rapeseed",
                                                             "Red clover",
                                                             "Turnip" ),
-                            labels = c("None",
-                                       "Arugula \n (Eruca vesicaria)" ,
-                            "Broadleaf mustard \n (Brassica juncea)",
-                            "Brown mustard \n (Brassica juncea)",
-                            "Collard \n (Brassica oleracea)",
-                            "Kale \n (Brassica oleracea)",
-                            "Mustard \n (Sinapis alba)",
-                            "Oriental mustard \n (Brassica juncea)",
-                            "Radish \n (Raphanus raphanistrum subsp. sativus)",
-                            "Rapeseed \n (Brassica napus)",
-                            "Red clover \n (Trifolium pratense)",
-                            "Turnip \n (Brassica rapa)" ), values = mannual_pallette) +
+                            labels = species3, values = mannual_pallette) +
 #   scale_colour_brewer(palette="Paired") +
 #  scale_fill_manual(palette = "Paired") +
-  theme(text = element_text(size=15))
+  theme(text = element_text(size=15), legend.text = element_markdown())
 
-
+ # Italics Latin names https://stackoverflow.com/questions/64067258/changing-one-character-in-axis-tick-labels-to-italic-while-keeping-multiple-line 
 ```
 
 
