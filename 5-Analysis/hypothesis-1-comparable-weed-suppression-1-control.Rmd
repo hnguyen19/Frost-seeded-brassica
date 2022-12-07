@@ -13,7 +13,7 @@ output:
 ```{r , include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, 
                       message = FALSE, 
-                      fig.dim = c(10, 6), 
+                      fig.dim = c(10, 8), 
                       fig.fullwidth=TRUE, 
                       dev = "jpeg",
                       dpi = 900)
@@ -133,7 +133,7 @@ $B_c$ is crop biomass in cover crop treatment
 #   summarize(mean_weed_control = mean(weed.biomass.g.per.sq.m))  # 148
 ```
 
-```{r nls-plot,echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
+```{r nls-plot, echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
 nls.brassica <-  nls(weed.biomass.g.per.sq.m ~ 148 / (1 + i.w * crop.biomass.g.per.sq.m),
     start = list(i.w = 0),
     data = fsb.wide)
@@ -212,7 +212,7 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 ```
 
 
-```{r}
+```{r nls-plot-labeled, echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
 fsb.wide.summ %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
     geom_point() +
@@ -225,9 +225,9 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
 #  geom_text_repel(show.legend = F)+
 #  labs(color= 'Cover crop') + 
-  geom_text_repel(aes(label = species3)) +
+  geom_text_repel(aes(label = species.y)) +
  # geom_text(aes(labels = species3)) +
-  theme(text = element_text(size=15)) #, legend.text = element_markdown())
+  theme(text = element_text(size=15), legend.position="none") #, legend.text = element_markdown())
 ```
 
 
