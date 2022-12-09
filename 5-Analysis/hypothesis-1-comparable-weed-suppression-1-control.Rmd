@@ -13,7 +13,7 @@ output:
 ```{r , include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, 
                       message = FALSE, 
-                      fig.dim = c(10, 8), 
+                      fig.dim = c(8, 8), 
                       fig.fullwidth=TRUE, 
                       dev = "jpeg",
                       dpi = 900)
@@ -164,18 +164,6 @@ group_by(species.y) %>%
  summarise(crop.biomass.g.per.sq.m = mean(crop.biomass.g.per.sq.m),
       weed.biomass.g.per.sq.m = mean(weed.biomass.g.per.sq.m)) 
 
-# fsb.wide.summ$species3 <- factor(fsb.wide.summ$species.y, levels =c("None",
-#                                                             "Arugula<br>(*Eruca vesicaria*)" ,    
-#                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
-#                                                             "Brown mustard<br>(*Brassica juncea*)",
-#                                                             "Collard<br>(*Brassica oleracea*)",
-#                                                             "Kale<br>(*Brassica oleracea*)",
-#                                                             "Mustard<br>(*Sinapis alba*)",
-#                                                             "Oriental mustard<br>(*Brassica juncea*)",
-#                                                             "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
-#                                                             "Rapeseed<br>(*Brassica napus*)",
-#                                                             "Red clover<br>(*Trifolium pratense*)",
-#                                                             "Turnip<br>(*Brassica rapa*)" ))
 
 mannual_pallette <- c(brewer.pal(12,"Paired"))
 
@@ -228,12 +216,31 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
 #  geom_text_repel(show.legend = F)+
 #  labs(color= 'Cover crop') + 
 #  geom_text_repel(aes(label = species.y)) +
-  geom_text_repel(aes(label = species2), nudge_y = 1.0E-6) +
+  geom_text_repel(aes(label = species2), direction = "both", box.padding = .25, point.padding = .25) + # nudge so that text labels do not overlap line
+ # geom_text(aes(labels = species3)) +
+  theme(text = element_text(size=20), legend.position="none") #, legend.text = element_markdown())
+
+#This plot was created with the same nudging with the next, but magically, no overlapping of label and geom_line
+```
+
+```{r nls-plot-labeled2, echo=FALSE, fig.cap= "Weed suppression from Brassicaceae biomass"}
+fsb.wide.summ %>%
+ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
+    geom_point() +
+  geom_line(aes(y=predict(nls.brassica)), size = 2, data = fsb.wide) + 
+  ylim(28, 190) +
+  xlim(0, 170) +
+  ylab(expression(paste("Weed biomass (",g~m^{"-2"},")"))) +
+  xlab(expression(paste("Crop biomass (",g~m^{"-2"},")"))) +
+  geom_vline(xintercept = 85, color = "grey", linetype="dashed") + 
+  geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
+#  geom_text_repel(show.legend = F)+
+#  labs(color= 'Cover crop') + 
+#  geom_text_repel(aes(label = species.y)) +
+  geom_text_repel(aes(label = species2), direction = "both", box.padding = .25, point.padding = .25) + # nudge so that text labels do not overlap line
  # geom_text(aes(labels = species3)) +
   theme(text = element_text(size=20), legend.position="none") #, legend.text = element_markdown())
 ```
-
-
 
 ### Linear model diagnosis 
 
