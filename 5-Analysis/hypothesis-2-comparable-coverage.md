@@ -116,13 +116,13 @@ coverage %>%
   geom_bar(stat = "identity", position = "dodge", fill = "#B31B1B") + 
   geom_errorbar( aes(x = species, ymin = sp.coverage - sd, ymax = sp.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
   geom_text(aes(y = 59, x = species, label = multcompLetters.TukeyHSD.anova..species...4...Letters)) +
-  ylab("Speculative coverage (%)" ) +
+  ylab("Coverage (%)" ) +
   xlab(" ") + 
    theme(legend.title= element_blank(),
          text = element_text(size=15),
          axis.text.x = element_markdown()) + # Italics Latin names https://stackoverflow.com/questions/64067258/changing-one-character-in-axis-tick-labels-to-italic-while-keeping-multiple-line 
   scale_x_discrete(labels = species3,
-                   guide = guide_axis(angle = 40)) # + scale_x_discrete(guide = guide_axis(angle = 40)) 
+                   guide = guide_axis(angle = 60)) # + scale_x_discrete(guide = guide_axis(angle = 40)) 
 ```
 
 ![](hypothesis-2-comparable-coverage_files/figure-html/coverage-letters-1.jpeg)<!-- -->
