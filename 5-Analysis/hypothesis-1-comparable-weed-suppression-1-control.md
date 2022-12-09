@@ -143,7 +143,7 @@ list(weeds.lm1, weeds.lm2) %>%
 
 
 ```{=html}
-<template id="464a8506-3095-4dfb-80c3-636654875c8e"><style>
+<template id="59a32ef8-8adb-43b9-a22b-6a825b43ea6b"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -151,7 +151,6 @@ list(weeds.lm1, weeds.lm2) %>%
   margin-left:auto;
   margin-right:auto;
   border-width: 0;
-  display: table;
   border-color: transparent;
   caption-side: top;
 }
@@ -164,7 +163,7 @@ list(weeds.lm1, weeds.lm2) %>%
 .tabwid_right table{
   margin-right:0;
 }
-.tabwid td {
+.tabwid td, .tabwid th {
     padding: 0;
 }
 .tabwid a {
@@ -182,20 +181,19 @@ background-color: transparent;
 .katex-display {
     margin: 0 0 !important;
 }
-</style><div class="tabwid"><style>.cl-dc13de98{}.cl-dc0e60c6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dc10b20e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dc10c24e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc10c24f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc10c258{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc0980ec{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-dc13de98'>
+</style><div class="tabwid"><style>.cl-cf15e1c2{}.cl-cf0fa438{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cf1211c8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cf12221c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf122226{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf122230{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-cf15e1c2'>
 
 ```
 
-<caption>(\#tab:ancova-weeds)<span class="cl-dc0980ec">ANCOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.</span></caption>
+<caption>(\#tab:ancova-weeds)<span>ANCOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.</span></caption>
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dc10c24e"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">model term             </span></p></td><td class="cl-dc10c24e"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">df1</span></p></td><td class="cl-dc10c24e"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">df2</span></p></td><td class="cl-dc10c24e"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">F.ratio</span></p></td><td class="cl-dc10c24e"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">p.value</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">block                  </span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">  3</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 32</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">  7.342</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 0.0007</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">species.y              </span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 11</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 32</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">  1.541</span></p></td><td class="cl-dc10c24f"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 0.1652</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc10c258"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">crop.biomass.g.per.sq.m</span></p></td><td class="cl-dc10c258"><p class="cl-dc10b20e"><span class="cl-dc0e60c6">  1</span></p></td><td class="cl-dc10c258"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 32</span></p></td><td class="cl-dc10c258"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 13.111</span></p></td><td class="cl-dc10c258"><p class="cl-dc10b20e"><span class="cl-dc0e60c6"> 0.0010</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="e2627637-7c13-49e3-801b-1cd6f0e08bd2"></div>
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-cf12221c"><p class="cl-cf1211c8"><span class="cl-cf0fa438">model term             </span></p></th><th class="cl-cf12221c"><p class="cl-cf1211c8"><span class="cl-cf0fa438">df1</span></p></th><th class="cl-cf12221c"><p class="cl-cf1211c8"><span class="cl-cf0fa438">df2</span></p></th><th class="cl-cf12221c"><p class="cl-cf1211c8"><span class="cl-cf0fa438">F.ratio</span></p></th><th class="cl-cf12221c"><p class="cl-cf1211c8"><span class="cl-cf0fa438">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438">block                  </span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438">  3</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 32</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438">  7.342</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 0.0007</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438">species.y              </span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 11</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 32</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438">  1.541</span></p></td><td class="cl-cf122226"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 0.1652</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cf122230"><p class="cl-cf1211c8"><span class="cl-cf0fa438">crop.biomass.g.per.sq.m</span></p></td><td class="cl-cf122230"><p class="cl-cf1211c8"><span class="cl-cf0fa438">  1</span></p></td><td class="cl-cf122230"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 32</span></p></td><td class="cl-cf122230"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 13.111</span></p></td><td class="cl-cf122230"><p class="cl-cf1211c8"><span class="cl-cf0fa438"> 0.0010</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="2de75b5f-f70c-4a32-911e-925f99d626fd"></div>
 <script>
-var dest = document.getElementById("e2627637-7c13-49e3-801b-1cd6f0e08bd2");
-var template = document.getElementById("464a8506-3095-4dfb-80c3-636654875c8e");
-var caption = template.content.querySelector("caption");
+var dest = document.getElementById("2de75b5f-f70c-4a32-911e-925f99d626fd");
+var template = document.getElementById("59a32ef8-8adb-43b9-a22b-6a825b43ea6b");
 var fantome = dest.attachShadow({mode: 'open'});
 var templateContent = template.content;
 fantome.appendChild(templateContent);
@@ -204,7 +202,7 @@ fantome.appendChild(templateContent);
 ```
 
 ```{=html}
-<template id="d17e7ebf-cc4a-4f7d-8126-e9fccfef602e"><style>
+<template id="d83ea148-4130-40ff-b043-3f54edc196cd"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -212,7 +210,6 @@ fantome.appendChild(templateContent);
   margin-left:auto;
   margin-right:auto;
   border-width: 0;
-  display: table;
   border-color: transparent;
   caption-side: top;
 }
@@ -225,7 +222,7 @@ fantome.appendChild(templateContent);
 .tabwid_right table{
   margin-right:0;
 }
-.tabwid td {
+.tabwid td, .tabwid th {
     padding: 0;
 }
 .tabwid a {
@@ -243,20 +240,19 @@ background-color: transparent;
 .katex-display {
     margin: 0 0 !important;
 }
-</style><div class="tabwid"><style>.cl-dc27c534{}.cl-dc22e76c{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dc250858{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dc2515aa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc2515b4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc2515be{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc19e8c4{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-dc27c534'>
+</style><div class="tabwid"><style>.cl-cf24eaa0{}.cl-cf1fd042{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cf21fa48{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cf2205e2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf2205ec{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf2205f6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-cf24eaa0'>
 
 ```
 
-<caption>(\#tab:ancova-crops)<span class="cl-dc19e8c4">ANCOVA for crop biomass response. Crop biomass was analyzed on the original scale.</span></caption>
+<caption>(\#tab:ancova-crops)<span>ANCOVA for crop biomass response. Crop biomass was analyzed on the original scale.</span></caption>
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dc2515aa"><p class="cl-dc250858"><span class="cl-dc22e76c">model term             </span></p></td><td class="cl-dc2515aa"><p class="cl-dc250858"><span class="cl-dc22e76c">df1</span></p></td><td class="cl-dc2515aa"><p class="cl-dc250858"><span class="cl-dc22e76c">df2</span></p></td><td class="cl-dc2515aa"><p class="cl-dc250858"><span class="cl-dc22e76c">F.ratio</span></p></td><td class="cl-dc2515aa"><p class="cl-dc250858"><span class="cl-dc22e76c">p.value</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c">block                  </span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c">  3</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> 29</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c">  7.072</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> 0.0010</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c">species.y              </span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> 10</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> 29</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> 10.365</span></p></td><td class="cl-dc2515b4"><p class="cl-dc250858"><span class="cl-dc22e76c"> &lt;.0001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc2515be"><p class="cl-dc250858"><span class="cl-dc22e76c">weed.biomass.g.per.sq.m</span></p></td><td class="cl-dc2515be"><p class="cl-dc250858"><span class="cl-dc22e76c">  1</span></p></td><td class="cl-dc2515be"><p class="cl-dc250858"><span class="cl-dc22e76c"> 29</span></p></td><td class="cl-dc2515be"><p class="cl-dc250858"><span class="cl-dc22e76c">  8.706</span></p></td><td class="cl-dc2515be"><p class="cl-dc250858"><span class="cl-dc22e76c"> 0.0062</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="4a11ad03-89c6-4724-a109-99475ffba81e"></div>
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-cf2205e2"><p class="cl-cf21fa48"><span class="cl-cf1fd042">model term             </span></p></th><th class="cl-cf2205e2"><p class="cl-cf21fa48"><span class="cl-cf1fd042">df1</span></p></th><th class="cl-cf2205e2"><p class="cl-cf21fa48"><span class="cl-cf1fd042">df2</span></p></th><th class="cl-cf2205e2"><p class="cl-cf21fa48"><span class="cl-cf1fd042">F.ratio</span></p></th><th class="cl-cf2205e2"><p class="cl-cf21fa48"><span class="cl-cf1fd042">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042">block                  </span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042">  3</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 29</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042">  7.072</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 0.0010</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042">species.y              </span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 10</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 29</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 10.365</span></p></td><td class="cl-cf2205ec"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> &lt;.0001</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cf2205f6"><p class="cl-cf21fa48"><span class="cl-cf1fd042">weed.biomass.g.per.sq.m</span></p></td><td class="cl-cf2205f6"><p class="cl-cf21fa48"><span class="cl-cf1fd042">  1</span></p></td><td class="cl-cf2205f6"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 29</span></p></td><td class="cl-cf2205f6"><p class="cl-cf21fa48"><span class="cl-cf1fd042">  8.706</span></p></td><td class="cl-cf2205f6"><p class="cl-cf21fa48"><span class="cl-cf1fd042"> 0.0062</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="4ec6fc6c-0d25-4402-851e-8b004c8c6234"></div>
 <script>
-var dest = document.getElementById("4a11ad03-89c6-4724-a109-99475ffba81e");
-var template = document.getElementById("d17e7ebf-cc4a-4f7d-8126-e9fccfef602e");
-var caption = template.content.querySelector("caption");
+var dest = document.getElementById("4ec6fc6c-0d25-4402-851e-8b004c8c6234");
+var template = document.getElementById("d83ea148-4130-40ff-b043-3f54edc196cd");
 var fantome = dest.attachShadow({mode: 'open'});
 var templateContent = template.content;
 fantome.appendChild(templateContent);
@@ -269,7 +265,7 @@ fantome.appendChild(templateContent);
 
 
 ```{=html}
-<template id="92156a2d-327f-49ca-9da3-362578d00b5e"><style>
+<template id="9a01667a-7c52-4051-964f-18c49edcb94d"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -277,7 +273,6 @@ fantome.appendChild(templateContent);
   margin-left:auto;
   margin-right:auto;
   border-width: 0;
-  display: table;
   border-color: transparent;
   caption-side: top;
 }
@@ -290,7 +285,7 @@ fantome.appendChild(templateContent);
 .tabwid_right table{
   margin-right:0;
 }
-.tabwid td {
+.tabwid td, .tabwid th {
     padding: 0;
 }
 .tabwid a {
@@ -308,20 +303,19 @@ background-color: transparent;
 .katex-display {
     margin: 0 0 !important;
 }
-</style><div class="tabwid"><style>.cl-dc484c50{}.cl-dc434a52{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dc458858{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dc459410{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc459411{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc45941a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dc406594{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-dc484c50'>
+</style><div class="tabwid"><style>.cl-cf442744{}.cl-cf3f24f6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cf4119e6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cf412634{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf412635{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cf41263e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-cf442744'>
 
 ```
 
-<caption>(\#tab:anova-weeds)<span class="cl-dc406594">ANOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.</span></caption>
+<caption>(\#tab:anova-weeds)<span>ANOVA for weed biomass response. Weed biomass was transformed with ln(x + 1) to maintain data normality.</span></caption>
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dc459410"><p class="cl-dc458858"><span class="cl-dc434a52">model term</span></p></td><td class="cl-dc459410"><p class="cl-dc458858"><span class="cl-dc434a52">df1</span></p></td><td class="cl-dc459410"><p class="cl-dc458858"><span class="cl-dc434a52">df2</span></p></td><td class="cl-dc459410"><p class="cl-dc458858"><span class="cl-dc434a52">F.ratio</span></p></td><td class="cl-dc459410"><p class="cl-dc458858"><span class="cl-dc434a52">p.value</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dc459411"><p class="cl-dc458858"><span class="cl-dc434a52">block     </span></p></td><td class="cl-dc459411"><p class="cl-dc458858"><span class="cl-dc434a52">  3</span></p></td><td class="cl-dc459411"><p class="cl-dc458858"><span class="cl-dc434a52"> 33</span></p></td><td class="cl-dc459411"><p class="cl-dc458858"><span class="cl-dc434a52">  3.264</span></p></td><td class="cl-dc459411"><p class="cl-dc458858"><span class="cl-dc434a52"> 0.0335</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dc45941a"><p class="cl-dc458858"><span class="cl-dc434a52">species.y </span></p></td><td class="cl-dc45941a"><p class="cl-dc458858"><span class="cl-dc434a52"> 11</span></p></td><td class="cl-dc45941a"><p class="cl-dc458858"><span class="cl-dc434a52"> 33</span></p></td><td class="cl-dc45941a"><p class="cl-dc458858"><span class="cl-dc434a52">  1.869</span></p></td><td class="cl-dc45941a"><p class="cl-dc458858"><span class="cl-dc434a52"> 0.0814</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="31ee1c93-1b6f-4860-ab4e-b66e7b0fad45"></div>
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-cf412634"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">model term</span></p></th><th class="cl-cf412634"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">df1</span></p></th><th class="cl-cf412634"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">df2</span></p></th><th class="cl-cf412634"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">F.ratio</span></p></th><th class="cl-cf412634"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cf412635"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">block     </span></p></td><td class="cl-cf412635"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">  3</span></p></td><td class="cl-cf412635"><p class="cl-cf4119e6"><span class="cl-cf3f24f6"> 33</span></p></td><td class="cl-cf412635"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">  3.264</span></p></td><td class="cl-cf412635"><p class="cl-cf4119e6"><span class="cl-cf3f24f6"> 0.0335</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cf41263e"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">species.y </span></p></td><td class="cl-cf41263e"><p class="cl-cf4119e6"><span class="cl-cf3f24f6"> 11</span></p></td><td class="cl-cf41263e"><p class="cl-cf4119e6"><span class="cl-cf3f24f6"> 33</span></p></td><td class="cl-cf41263e"><p class="cl-cf4119e6"><span class="cl-cf3f24f6">  1.869</span></p></td><td class="cl-cf41263e"><p class="cl-cf4119e6"><span class="cl-cf3f24f6"> 0.0814</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="d556673d-b0ed-436a-b233-16062281fbc8"></div>
 <script>
-var dest = document.getElementById("31ee1c93-1b6f-4860-ab4e-b66e7b0fad45");
-var template = document.getElementById("92156a2d-327f-49ca-9da3-362578d00b5e");
-var caption = template.content.querySelector("caption");
+var dest = document.getElementById("d556673d-b0ed-436a-b233-16062281fbc8");
+var template = document.getElementById("9a01667a-7c52-4051-964f-18c49edcb94d");
 var fantome = dest.attachShadow({mode: 'open'});
 var templateContent = template.content;
 fantome.appendChild(templateContent);
@@ -334,7 +328,7 @@ fantome.appendChild(templateContent);
 ![](hypothesis-1-comparable-weed-suppression-1-control_files/figure-html/anova-weeds-1.jpeg)<!-- -->
 
 ```{=html}
-<template id="d5dbc7e3-f073-4249-8b56-0e081c7bda01"><style>
+<template id="41484b7a-6f64-4346-876a-1e2c2737bcc7"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -342,7 +336,6 @@ fantome.appendChild(templateContent);
   margin-left:auto;
   margin-right:auto;
   border-width: 0;
-  display: table;
   border-color: transparent;
   caption-side: top;
 }
@@ -355,7 +348,7 @@ fantome.appendChild(templateContent);
 .tabwid_right table{
   margin-right:0;
 }
-.tabwid td {
+.tabwid td, .tabwid th {
     padding: 0;
 }
 .tabwid a {
@@ -373,20 +366,19 @@ background-color: transparent;
 .katex-display {
     margin: 0 0 !important;
 }
-</style><div class="tabwid"><style>.cl-dce6652a{}.cl-dce03376{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dce28072{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-dce28fd6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dce28fd7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dce28fe0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-dcdd71d6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}</style><table class='cl-dce6652a'>
+</style><div class="tabwid"><style>.cl-cfeacda6{}.cl-cfe51b04{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-cfe751ee{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-cfe75d6a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cfe75d74{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cfe75d75{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-cfeacda6'>
 
 ```
 
-<caption>(\#tab:anova-crops)<span class="cl-dcdd71d6">ANOVA for crop biomass response. Crop biomass was analyzed on the original scale.</span></caption>
+<caption>(\#tab:anova-crops)<span>ANOVA for crop biomass response. Crop biomass was analyzed on the original scale.</span></caption>
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-dce28fd6"><p class="cl-dce28072"><span class="cl-dce03376">model term</span></p></td><td class="cl-dce28fd6"><p class="cl-dce28072"><span class="cl-dce03376">df1</span></p></td><td class="cl-dce28fd6"><p class="cl-dce28072"><span class="cl-dce03376">df2</span></p></td><td class="cl-dce28fd6"><p class="cl-dce28072"><span class="cl-dce03376">F.ratio</span></p></td><td class="cl-dce28fd6"><p class="cl-dce28072"><span class="cl-dce03376">p.value</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-dce28fd7"><p class="cl-dce28072"><span class="cl-dce03376">block     </span></p></td><td class="cl-dce28fd7"><p class="cl-dce28072"><span class="cl-dce03376">  3</span></p></td><td class="cl-dce28fd7"><p class="cl-dce28072"><span class="cl-dce03376"> 30</span></p></td><td class="cl-dce28fd7"><p class="cl-dce28072"><span class="cl-dce03376">  3.846</span></p></td><td class="cl-dce28fd7"><p class="cl-dce28072"><span class="cl-dce03376"> 0.0193</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-dce28fe0"><p class="cl-dce28072"><span class="cl-dce03376">species.y </span></p></td><td class="cl-dce28fe0"><p class="cl-dce28072"><span class="cl-dce03376"> 10</span></p></td><td class="cl-dce28fe0"><p class="cl-dce28072"><span class="cl-dce03376"> 30</span></p></td><td class="cl-dce28fe0"><p class="cl-dce28072"><span class="cl-dce03376"> 10.793</span></p></td><td class="cl-dce28fe0"><p class="cl-dce28072"><span class="cl-dce03376"> &lt;.0001</span></p></td></tr></tbody></table></div></template>
-<div class="flextable-shadow-host" id="2dffd992-342c-4ae3-9214-9f9e22482eb2"></div>
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-cfe75d6a"><p class="cl-cfe751ee"><span class="cl-cfe51b04">model term</span></p></th><th class="cl-cfe75d6a"><p class="cl-cfe751ee"><span class="cl-cfe51b04">df1</span></p></th><th class="cl-cfe75d6a"><p class="cl-cfe751ee"><span class="cl-cfe51b04">df2</span></p></th><th class="cl-cfe75d6a"><p class="cl-cfe751ee"><span class="cl-cfe51b04">F.ratio</span></p></th><th class="cl-cfe75d6a"><p class="cl-cfe751ee"><span class="cl-cfe51b04">p.value</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-cfe75d74"><p class="cl-cfe751ee"><span class="cl-cfe51b04">block     </span></p></td><td class="cl-cfe75d74"><p class="cl-cfe751ee"><span class="cl-cfe51b04">  3</span></p></td><td class="cl-cfe75d74"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> 30</span></p></td><td class="cl-cfe75d74"><p class="cl-cfe751ee"><span class="cl-cfe51b04">  3.846</span></p></td><td class="cl-cfe75d74"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> 0.0193</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-cfe75d75"><p class="cl-cfe751ee"><span class="cl-cfe51b04">species.y </span></p></td><td class="cl-cfe75d75"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> 10</span></p></td><td class="cl-cfe75d75"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> 30</span></p></td><td class="cl-cfe75d75"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> 10.793</span></p></td><td class="cl-cfe75d75"><p class="cl-cfe751ee"><span class="cl-cfe51b04"> &lt;.0001</span></p></td></tr></tbody></table></div></template>
+<div class="flextable-shadow-host" id="4d33b07a-1a3d-4357-91e7-87c973117204"></div>
 <script>
-var dest = document.getElementById("2dffd992-342c-4ae3-9214-9f9e22482eb2");
-var template = document.getElementById("d5dbc7e3-f073-4249-8b56-0e081c7bda01");
-var caption = template.content.querySelector("caption");
+var dest = document.getElementById("4d33b07a-1a3d-4357-91e7-87c973117204");
+var template = document.getElementById("41484b7a-6f64-4346-876a-1e2c2737bcc7");
 var fantome = dest.attachShadow({mode: 'open'});
 var templateContent = template.content;
 fantome.appendChild(templateContent);

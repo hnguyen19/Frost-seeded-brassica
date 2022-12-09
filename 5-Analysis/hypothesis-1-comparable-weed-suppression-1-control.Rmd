@@ -79,7 +79,7 @@ levels(factor(fsb.wide$species.y))
 
 fsb.wide$species.y <- factor(fsb.wide$species.y, levels = c("None",
                                                             "Arugula" ,    
-                                                            "Broadleaf mustard",
+                                                            "Broadleaf mustard", #not in EPPO
                                                             "Brown mustard",
                                                             "Collard",
                                                             "Kale",
@@ -90,18 +90,32 @@ fsb.wide$species.y <- factor(fsb.wide$species.y, levels = c("None",
                                                             "Red clover",
                                                             "Turnip" ))
 
-fsb.wide$species3 <-  factor(fsb.wide$species.y, levels =c("None",
-                                                            "Arugula<br>(*Eruca vesicaria*)" ,    
+species2 <-  c("No cover crop",
+                                                            "Arugula" ,    
+                                                            "Broadleaf mustard", #not in EPPO
+                                                            "Brown mustard",
+                                                            "Collard",
+                                                            "Kale",
+                                                            "Mustard",
+                                                            "Oriental mustard",
+                                                            "Radish",
+                                                            "Rapeseed",
+                                                            "Red clover",
+                                                            "Turnip" )
+
+
+species3 <-  c("No cover crop",
+                                                            "Arugula<br>(*Eruca vesicaria* subsp. *sativa*)" ,    
                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
                                                             "Brown mustard<br>(*Brassica juncea*)",
-                                                            "Collard<br>(*Brassica oleracea*)",
-                                                            "Kale<br>(*Brassica oleracea*)",
+                                                            "Collard<br>(*Brassica oleracea* var. *viridis*)",
+                                                            "Kale<br>(*Brassica oleracea* var. *sabellica*)", #Wiki
                                                             "Mustard<br>(*Sinapis alba*)",
-                                                            "Oriental mustard<br>(*Brassica juncea*)",
-                                                            "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+                                                            "Oriental mustard<br>(*Sisymbrium orientale*)",
+                                                            "Radish<br>(*Raphanus sativus*)",
                                                             "Rapeseed<br>(*Brassica napus*)",
                                                             "Red clover<br>(*Trifolium pratense*)",
-                                                            "Turnip<br>(*Brassica rapa*)" ))
+                                                            "Turnip<br>(*Brassica rapa*)" )
 ```
 
 
@@ -165,18 +179,6 @@ group_by(species.y) %>%
 
 mannual_pallette <- c(brewer.pal(12,"Paired"))
 
- species3 <-  c("None",
-                                                             "Arugula<br>(*Eruca vesicaria*)" ,    
-                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
-                                                             "Brown mustard<br>(*Brassica juncea*)",
-                                                             "Collard<br>(*Brassica oleracea*)",
-                                                             "Kale<br>(*Brassica oleracea*)",
-                                                             "Mustard<br>(*Sinapis alba*)",
-                                                             "Oriental mustard<br>(*Brassica juncea*)",
-                                                             "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
-                                                             "Rapeseed<br>(*Brassica napus*)",
-                                                             "Red clover<br>(*Trifolium pratense*)",
-                                                             "Turnip<br>(*Brassica rapa*)" )
 
 fsb.wide %>%
 ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
@@ -225,9 +227,10 @@ ggplot(aes(x = crop.biomass.g.per.sq.m, y = weed.biomass.g.per.sq.m)) +
   geom_hline(yintercept = 109, color = "grey", linetype="dashed") + 
 #  geom_text_repel(show.legend = F)+
 #  labs(color= 'Cover crop') + 
-  geom_text_repel(aes(label = species.y)) +
+#  geom_text_repel(aes(label = species.y)) +
+  geom_text_repel(aes(label = species2), nudge_y = 1.0E-6) +
  # geom_text(aes(labels = species3)) +
-  theme(text = element_text(size=15), legend.position="none") #, legend.text = element_markdown())
+  theme(text = element_text(size=20), legend.position="none") #, legend.text = element_markdown())
 ```
 
 

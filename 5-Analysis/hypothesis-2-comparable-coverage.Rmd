@@ -64,15 +64,15 @@ coverage$species2 <- factor(coverage$species, levels = c("Control",
                                                             "Turnip (Brassica rapa)" ))
 
 # for italics Latin names https://stackoverflow.com/questions/64067258/changing-one-character-in-axis-tick-labels-to-italic-while-keeping-multiple-line
-species3 <-  c(#"Control",
-                                                            "Arugula<br>(*Eruca vesicaria*)" ,    
+species3 <-  c("No cover",
+                                                            "Arugula<br>(*Eruca vesicaria* subsp. *sativa*)" ,    
                                                             "Broadleaf mustard<br>(*Brassica juncea*)",
                                                             "Brown mustard<br>(*Brassica juncea*)",
-                                                            "Collard<br>(*Brassica oleracea*)",
-                                                            "Kale<br>(*Brassica oleracea*)",
+                                                            "Collard<br>(*Brassica oleracea* var. *viridis*)",
+                                                            "Kale<br>(*Brassica oleracea* var. *sabellica*)", #Wiki
                                                             "Mustard<br>(*Sinapis alba*)",
-                                                            "Oriental mustard<br>(*Brassica juncea*)",
-                                                            "Radish<br>(*Raphanus raphanistrum* subsp. *sativus*)",
+                                                            "Oriental mustard<br>(*Sisymbrium orientale*)",
+                                                            "Radish<br>(*Raphanus sativus*)",
                                                             "Rapeseed<br>(*Brassica napus*)",
                                                             "Red clover<br>(*Trifolium pratense*)",
                                                             "Turnip<br>(*Brassica rapa*)" )
@@ -91,7 +91,7 @@ coverage %>%
   ggplot(aes(x = species, y = sp.coverage)) +
   geom_bar(stat = "identity", position = "dodge", fill = "#B31B1B") + 
   geom_errorbar( aes(x = species, ymin = sp.coverage - sd, ymax = sp.coverage + sd), width=0.4, colour="black", alpha=0.9, size=1) + 
-  ylab("Speculative coverage (%)" ) +
+  ylab("Coverage (%)" ) +
   xlab(" ") + 
    theme(legend.title= element_blank()) + 
   scale_x_discrete(guide = guide_axis(angle = 40)) 
