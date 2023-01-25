@@ -1,10 +1,35 @@
 cff-version: 1.2.0
-message: "If you use this code, please cite it as below."
+message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Nguyen"
-  given-names: "Huong"
+  given-names: "Huong T. X."
   orcid: "https://orcid.org/0000-0002-5806-1178"
-title: 
-doi: 
-date-released:
-url: 
+- family-names: "Fisher"
+  given-names: "Olivia L."
+  orcid:
+- family-names: "Fox"
+  given-names: "Amy T."
+  orcid: 
+- family-names: "Loria"
+  given-names: "Kristen"
+  orcid:
+- family-names: "Marini"
+  given-names: "Kathryn F."
+  orcid: 
+- family-names: "Pelzer"
+  given-names: "Christopher J."
+  orcid:
+- family-names: "Sharifi"
+  given-names: "Adam N."
+  orcid:
+- family-names: "Varma"
+  given-names: "Domenic D."
+  orcid:
+- family-names: "Wayman"
+  given-names: "Sandra"
+  orcid:
+- family-names: "Ryan "
+  given-names: "Matthew R."
+  orcid:
+title: "Weed suppression from frost-seeded *Brassicaceae* cover crops"
+url: "https://github.com/hnguyen19/Frost-seeded-brassica"
