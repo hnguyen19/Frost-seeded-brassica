@@ -1,1 +1,0 @@
-Questions that arose from the current study.
